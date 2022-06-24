@@ -1,4 +1,4 @@
-.add-subscriber {
+.edit-subscriber {
     width: 85vw;
     height: 100vh;
     display: flex;
@@ -14,35 +14,32 @@
     margin: 10px;
 }
 
-.add-subscriber-icon {
+.edit-subscriber-icon {
     margin-top: 20px;
 }
 
-.add-subscriber > p {
+.edit-subscriber > p {
     margin: 0;
     padding: 0;
     font-size: var(--title-size);
-}
-
-.add-subscriber > p {
-    margin: 0;
     font-weight: bold;
 }
 
-.add-form {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    row-gap: 10px;
-    column-gap: 40px;
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
     padding: 10px;
+    margin-bottom: 40px;
 }
 
-.add-form > div > p {
+.edit-form > div > p {
     margin: 0;
-    font-size: var(--text-form-size);
 }
 
-.input-info-subscriber {
+.input-info-edit-subscriber {
     width: 320px;
     border: solid 2px;
     border-radius: 10px;
@@ -51,7 +48,7 @@
     padding-block: 5px;
 }
 
-.register-button {
+.save-changes-edit-button {
     padding-inline: 20px;
     padding-block: 10px;
 }

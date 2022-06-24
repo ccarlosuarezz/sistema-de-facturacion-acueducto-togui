@@ -23,14 +23,14 @@ const EnrollmentsWindow = () => {
             <p className="enrollments-title"><b>Matrículas</b></p>
             <div className="form-search-enrollment">
                 <div className="search-enrollment">
-                    <input type="number" placeholder="N° de matricula" className="input-id-enrollment"></input>
+                    <input type="number" placeholder="N° de matrícula" className="input-id-enrollment"></input>
                     <button onClick={handleClickSearchEnrollment} className="button-search">
                         <img src={searchIcon} width={30}/>
                     </button>
                 </div>
                 <button onClick={handleClickAddEnrollment} className="button-register-enrollment">
-                    <AddEnrollmentIcon width={30} height={30} fill={defaultIconsColor} className="add-enrollment-icon"/>
-                    <p>Registrar matrículas</p>
+                    <AddEnrollmentIcon width={30} height={30} fill={defaultIconsColor} className="add-enrollment-icon-button"/>
+                    <p>Registrar matrícula</p>
                 </button>
             </div>
         </div>

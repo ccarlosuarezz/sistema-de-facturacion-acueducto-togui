@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
-import addSubscriberIcon from "../../assets/images/addSubscriber.svg"
 import backIcon from "../../assets/images/back.svg"
+import addSubscriberIcon from "../../assets/images/addSubscriber.svg"
 import "./AddSubscriberWindow.css"
 
 export function AddSubscriberWindow() {
@@ -20,7 +20,7 @@ export function AddSubscriberWindow() {
             <input type="image" src={backIcon} width={40} onClick={handleClickSubscribers} className="button-back"/>
             <img src={addSubscriberIcon} width={100} className="add-subscriber-icon"/>
             <p>Nuevo suscriptor</p>
-            <div className="form">
+            <div className="add-form">
                 <div>
                     <p>Tipo de documento</p>
                     <select className="input-info-subscriber">

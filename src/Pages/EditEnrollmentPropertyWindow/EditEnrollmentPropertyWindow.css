@@ -1,0 +1,116 @@
+.edit-enrollment-property-window {
+    width: 85vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-back {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 10px;
+}
+
+.edit-enrollment-property-window > p {
+    margin: 0;
+    font-size: var(--title-size);
+    font-weight: bold;
+}
+
+.enrollment-property-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 50px;
+    padding: 10px;
+}
+
+.enrollment-property-form > div > p {
+    margin: 0;
+    padding: 0;
+    font-size: var(--text-form-size);
+}
+
+.input-info-enrollment-property {
+    width: 200px;
+    border: solid 2px;
+    border-radius: 10px;
+    font-size: var(--text-size);
+    padding-inline: 10px;
+    padding-block: 5px;
+}
+
+.input-info-enrollment-property-number {
+    width: 250px;
+}
+
+.address-property-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.address-property-container > p {
+    margin: 0;
+    font-size: var(--text-size);
+    font-weight: bold;
+}
+
+.address-property-container > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+    border: solid 2px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.address-property-container > div > div > p {
+    margin: 0;
+    font-size: var(--text-form-size);
+}
+
+.input-address-property {
+    width: 180px;
+    border: solid 2px;
+    border-radius: 10px;
+    font-size: var(--text-size);
+    padding-inline: 10px;
+    padding-block: 5px;
+}
+
+.propery-area-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 40px;
+    padding: 10px;
+    padding-bottom: 50px;
+}
+
+.propery-area-container > div > p {
+    margin: 0;
+    font-size: var(--text-form-size);
+}
+
+.input-area-property {
+    width: 150px;
+    border: solid 2px;
+    border-radius: 10px;
+    font-size: var(--text-size);
+    padding-inline: 10px;
+    padding-block: 5px;
+}
+
+.save-edit-enrollment-property-changes {
+    padding-inline: 30px;
+    padding-block: 10px;
+}

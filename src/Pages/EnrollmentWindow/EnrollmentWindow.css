@@ -1,0 +1,98 @@
+.enrollment-window {
+    width: 85vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0px;
+}
+
+.button-back {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 10px;
+}
+
+.enrollment-icon {
+    margin-top: 20px;
+}
+
+.enrollment-window > p {
+    margin: 0;
+    padding: 0;
+    font-size: var(--title-size);
+    font-weight: bold;
+}
+
+.enrollment-info {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.enrollment-info > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 40px;
+}
+
+.enrollment-info > div > p {
+    margin: 0;
+    padding: 0;
+    font-size: var(--text-size);
+}
+
+.info-property-watermeter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 40px;
+    padding-bottom: 10px;
+}
+
+.property-info, .watermeter-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.property-info > p, .watermeter-info > p {
+    margin: 0;
+    padding: 0;
+    font-size: var(--text-size);
+    font-weight: bold;
+    padding-bottom: 2px;
+}
+
+.property-info > div, .watermeter-info > div {
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: solid 2px;
+    border-radius: 10px;
+    padding: 20px;
+    row-gap: 10px;
+}
+
+.property-info > div > p, .watermeter-info > div > p {
+    margin: 0;
+    padding: 0;
+    font-size: var(--text-size);
+}
+
+.edit-enrollment-button {
+    padding-inline: 30px;
+    padding-block: 10px;
+}

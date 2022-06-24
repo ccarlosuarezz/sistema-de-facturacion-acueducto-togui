@@ -1,0 +1,114 @@
+.edit-enrollment-window {
+    width: 85vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-back {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 10px;
+}
+
+.edit-enrollment-icon {
+    margin-top: 20px;
+}
+
+.edit-enrollment-window > p {
+    margin: 0;
+    font-size: var(--title-size);
+    font-weight: bold;
+}
+
+.data-edit-enrollment-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+    margin: 10px;
+}
+
+.div-data-edit-enrollment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-data-edit-enrollment > p {
+    margin: 0;
+    font-size: var(--text-form-size);
+}
+
+.input-info-edit-enrollment {
+    width: 200px;
+    border: solid 2px;
+    border-radius: 10px;
+    font-size: var(--text-size);
+    padding-inline: 10px;
+    padding-block: 5px;
+}
+
+.input-info-edit-enrollment-state {
+    width: 250px;
+}
+
+.input-info-edit-enrollment-watermeter {
+    width: 150px;
+}
+
+.data-edit-watermeter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.data-edit-watermeter-container > p {
+    margin: 0;
+    font-size: var(--text-size);
+    font-weight: bold;
+}
+
+.data-edit-watermeter {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    border: solid 2px;
+    border-radius: 10px;
+    padding: 20px;
+    padding-top: 10px;
+}
+
+.data-edit-watermeter > div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.data-edit-watermeter > div > p {
+    margin: 0;
+    font-size: var(--text-form-size);
+}
+
+.edit-enrollment-watermeter-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    row-gap: 10px;
+    column-gap: 30px;
+}
+
+.edit-enrollment-watermeter-container > div > p, .input-info-edit-enrollment-watermeter {
+    opacity: 0.5;
+}
+
+.edit-property-button, .save-edit-enrollment-changes {
+    padding-inline: 20px;
+    padding-block: 10px;
+    margin-top: 10px;
+}

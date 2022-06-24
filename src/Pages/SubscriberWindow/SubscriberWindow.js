@@ -16,6 +16,10 @@ export function SubscriberWindow() {
         navigate('/admin/editar-suscriptor')
     }
 
+    const handleClickEnrollment = () => {
+        navigate('/admin/matricula')
+    }
+
     return (
         <div className="subscriber">
             <input type="image" src={backIcon} width={40} onClick={handleClickSubscribers} className="button-back"/>
@@ -52,14 +56,14 @@ export function SubscriberWindow() {
                             <td>Residencial</td>
                             <td>Vereda Manga</td>
                             <td>Predio 1</td>
-                            <td className="td-show-enrollment"><button className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
+                            <td className="td-show-enrollment"><button onClick={handleClickEnrollment} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
                         </tr>
                         <tr>
                             <td>0000000002</td>
                             <td>Agroindustrial</td>
                             <td>Vereda Garibay</td>
                             <td>Predio 2</td>
-                            <td className="td-show-enrollment"><button className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
+                            <td className="td-show-enrollment"><button onClick={handleClickEnrollment} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
                         </tr>
                     </tbody>
                 </table>

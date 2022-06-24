@@ -1,0 +1,156 @@
+.add-enrollment {
+    width: 85vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-back {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 10px;
+}
+
+.add-enrollment-icon {
+    margin-top: 20px;
+}
+
+.add-enrollment > p {
+    margin: 0;
+    padding: 0;
+    font-size: var(--title-size);
+    font-weight: bold;
+}
+
+.enrollment-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 50px;
+    padding: 20px;
+}
+
+.enrollment-form > div > p {
+    margin: 0;
+    padding: 0;
+    font-size: var(--text-form-size);
+}
+
+.input-info-enrollment {
+    width: 200px;
+    border: solid 2px;
+    border-radius: 10px;
+    font-size: var(--text-size);
+    padding-inline: 10px;
+    padding-block: 5px;
+}
+
+.input-info-enrollment-financing {
+    width: 110px;
+    border: solid 2px;
+    border-radius: 10px;
+    font-size: var(--text-size);
+    padding-inline: 10px;
+    padding-block: 5px;
+}
+
+.input-info-enrollment-financing-2 {
+    width: 80px;
+    border: solid 2px;
+    border-radius: 10px;
+    font-size: var(--text-size);
+    padding-inline: 10px;
+    padding-block: 5px;
+}
+
+.input-info-enrollment-watermeter, .input-info-enrollment-watermeter-2 {
+    width: 150px;
+    border: solid 2px;
+    border-radius: 10px;
+    font-size: var(--text-size);
+    padding-inline: 10px;
+    padding-block: 5px;
+}
+
+.input-info-enrollment-watermeter-2 {
+    opacity: 0.5;
+}
+
+.financing-watermeter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 40px;
+    padding-bottom: 40px;
+}
+
+.financing > div {
+    height: 205px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    padding: 20px;
+}
+
+.watermeter > div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 20px;
+}
+
+.watermeter-register-info {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    row-gap: 10px;
+    column-gap: 30px;
+}
+
+.watermeter-register-info > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.watermeter-register-info > div > p {
+    opacity: 0.5;
+}
+
+.div-info-financing {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.financing > p, .watermeter > p {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 2px;
+    font-size: var(--text-size);
+    font-weight: bold;
+}
+
+.financing > div, .watermeter > div {
+    border: solid 2px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.financing > div p, .watermeter > div p {
+    margin: 0;
+    font-size: var(--text-form-size);
+}
+
+.continue-button-add-enrollment {
+    padding-inline: 20px;
+    padding-block: 10px;
+}
