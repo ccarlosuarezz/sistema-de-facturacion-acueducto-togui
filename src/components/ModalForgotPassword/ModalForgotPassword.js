@@ -11,7 +11,7 @@ export default function ModalForgotPassword({state, closeFunction, title, conten
             {state &&
                 <Overlay>
                     <ModalContainer>
-                        <input type="image" src={closeIcon} width={40} onClick={closeFunction} className="button-close"/>
+                        <input type="image" src={closeIcon} width={25} onClick={closeFunction} className="button-close"/>
                         <img src={appIcon} width={80}/>
                         {title}
                         {content}

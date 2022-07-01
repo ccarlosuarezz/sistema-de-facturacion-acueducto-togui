@@ -17,11 +17,11 @@ const LoginWindow = () => {
             <ModalForgotPassword
                 state={modalStateVerifyIdentity}
                 closeFunction={() => changeModalStateVerifyIdentity(false)}
-                title={<p>Necesitamos verificar tu identidad</p>}
+                title={<p className="modal-title">Necesitamos verificar tu identidad</p>}
                 content={
                     <div>
-                        <p>Enviaremos un código de seguridad al siguiente correo</p>
-                        <p>correo.personal@mail.com</p>
+                        <p className="modal-text">Enviaremos un código de seguridad al correo</p>
+                        <p className="modal-text">correo.personal@mail.com</p>
                     </div>
                 }
                 acceptFunction={() => {
@@ -32,8 +32,8 @@ const LoginWindow = () => {
             <ModalForgotPassword
                 state={modalStateCode}
                 closeFunction={() => changeModalStateCode(false)}
-                title={<p>Ingresa el código de seguridad<br/>que te hemos enviado</p>}
-                content={<input type="number"/>}
+                title={<p className="modal-title">Ingresa el código de seguridad<br/>que te hemos enviado</p>}
+                content={<input type="number" className="modal-input-code"/>}
                 acceptFunction={() => {
                     changeModalStateCode(false);
                     changeModalStateChangePassword(true);
@@ -42,16 +42,16 @@ const LoginWindow = () => {
             <ModalForgotPassword
                 state={modalStateChangePassword}
                 closeFunction={() => changeModalStateChangePassword(false)}
-                title={<p>Cambiar contraseña</p>}
+                title={<p className="modal-title">Cambiar contraseña</p>}
                 content={
                     <div>
                         <div>
-                            <p>Nueva contraseña</p>
-                            <input type="password"/>
+                            <p className="modal-text">Nueva contraseña</p>
+                            <input type="password" className="modal-input-password"/>
                         </div>
                         <div>
-                            <p>Confirmar contraseña</p>
-                            <input type="password"/>
+                            <p className="modal-text">Confirmar contraseña</p>
+                            <input type="password" className="modal-input-password"/>
                         </div>
                     </div>
                 }
