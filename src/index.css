@@ -1,6 +1,7 @@
 :root {
   --green-color: #0AC23E;
-  --green-opaque-color: #0AC23ECC;
+  --green-opaque-color-80: #0AC23ECC;
+  --green-opaque-color-10: #0AC23E11;
   --yellow-color: #FFCC00;
   --red-color: #FF0000;
   --blue-color: #00CCFF;

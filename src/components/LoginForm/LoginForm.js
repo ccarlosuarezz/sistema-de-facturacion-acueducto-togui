@@ -4,7 +4,7 @@ import passwordIcon from "../../assets/images/password.svg"
 import hideIcon from "../../assets/images/hide.svg"
 import "./LoginForm.css"
 
-const LoginForm = () => {
+const LoginForm = ({forgotPassword}) => {
 
     const navigate =  useNavigate()
 
@@ -25,7 +25,7 @@ const LoginForm = () => {
                 <img src={hideIcon} width={30}></img>
             </div>
             <button className="button-login" onClick={handleClickAdmin}><b>Ingresar</b></button>
-            <a href="">Olvidé mi contraseña</a>
+            <a onClick={forgotPassword}>Olvidé mi contraseña</a>
         </div>
     )
 }

@@ -1,10 +1,9 @@
-.subscriber {
+.property {
     width: 85vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 10px;
 }
 
 .button-back {
@@ -14,19 +13,19 @@
     margin: 10px;
 }
 
-.subscriber-icon {
+.property-icon {
     margin-top: 20px;
 }
 
-.subscriber > p {
+.property > p {
     margin: 0;
-    padding: 0;
-    font-weight: bold;
     font-size: var(--title-size);
+    font-weight: bold;
 }
 
-.table-personal-info {
+.table-property-info {
     margin-top: 20px;
+    margin-bottom: 10px;
     border-spacing: 0;
     border:solid var(--green-color) 1px;
     border-radius: 10px;
@@ -34,7 +33,7 @@
     font-size: var(--text-form-size);
 }
 
-.table-personal-info td {
+.table-property-info td {
     border-left:solid var(--green-color) 2px;
     border-bottom:solid var(--green-color) 2px;
     padding-inline: 20px;
@@ -42,11 +41,11 @@
     text-align: left;
 }
 
-.table-personal-info td:first-child {
+.table-property-info td:first-child {
     border-left: none;
 }
 
-.table-personal-info tr td:first-child {
+.table-property-info tr td:first-child {
     padding: 3px;
     background-color: var(--green-opaque-color-80);
     padding-inline-start: 10px;
@@ -55,25 +54,25 @@
     font-weight: bold;
 }
 
-.table-personal-info tr td:last-child {
+.table-property-info tr td:last-child {
     padding: 3px;
     background-color: var(--green-opaque-color-10);
     padding-inline: 10px;
 }
 
-.table-personal-info tr:first-child td:first-child {
+.table-property-info tr:first-child td:first-child {
     border-top-left-radius: 9px;
 }
 
-.table-personal-info tr:first-child td:last-child {
+.table-property-info tr:first-child td:last-child {
     border-top-right-radius: 9px;
 }
 
-.table-personal-info tr:last-child td:first-child {
+.table-property-info tr:last-child td:first-child {
     border-bottom-left-radius: 9px;
 }
 
-.table-personal-info tr:last-child td:last-child {
+.table-property-info tr:last-child td:last-child {
     border-bottom-right-radius: 9px;
 }
 
@@ -84,6 +83,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 .table-enrollments p {
@@ -98,7 +98,6 @@
     border:solid var(--green-color) 1px;
     border-radius: 10px;
     -moz-border-radius: 10px;
-    font-size: var(--text-form-size);
 }
 
 .table-enrollments th, .table-enrollments td {
@@ -152,12 +151,4 @@
 .show-enrollment {
     background-color: var(--yellow-color);
     border-radius: 0px;
-}
-
-.edit-button {
-    margin-top: 10px;
-    padding-block: 10px;
-    padding-inline: 20px;
-    font-size: var(--text-size);
-    font-weight: bold;
 }

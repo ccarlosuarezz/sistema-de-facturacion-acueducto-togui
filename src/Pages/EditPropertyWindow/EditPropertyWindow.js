@@ -1,30 +1,33 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
-import addEnrollmentIcon from "../../assets/images/addEnrollment.svg"
 import backIcon from "../../assets/images/back.svg"
-import "./AddEnrollmentPropertyWindow.css"
+import editPropertyIcon from "../../assets/images/editProperty.svg"
+import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
+import "./EditPropertyWindow.css"
 
-export function AddEnrollmentPropertyWindow() {
+export function EditPropertyWindow() {
 
     const navigate =  useNavigate()
 
-    const handleClickAddEnrollment = () => {
-        navigate('/admin/registrar-matricula')
+    const handleClickProperty = () => {
+        navigate('/admin/predio')
     }
 
+    const [modalState, changeModalState] = useState(false);
+
     return (
-        <div className="enrollment-property">
-            <input type="image" src={backIcon} width={40} onClick={handleClickAddEnrollment} className="button-back"/>
-            <img src={addEnrollmentIcon} height={100} className="add-enrollment-icon"/>
-            <p className="title-enrollment-property">Nueva matrícula</p>
-            <p className="property-info-text">Información del predio</p>
+        <div className="edit-enrollment-property-window">
+            <input type="image" src={backIcon} width={40} onClick={handleClickProperty} className="button-back"/>
+            <img src={editPropertyIcon} height={100} className="edit-enrollment-icon"/>
+            <p>Editar predio</p>
             <div className="enrollment-property-form">
                 <div>
                     <p>Número predial anterior</p>
-                    <input type="number" className="input-info-enrollment-property input-info-enrollment-property-number"/>
+                    <input type="number" className="input-info-enrollment-property input-info-enrollment-property-number" value="00000000000000000000"/>
                 </div>
                 <div>
                     <p>Nombre</p>
-                    <input type="text" className="input-info-enrollment-property"/>
+                    <input type="text" className="input-info-enrollment-property" value="Nombre del predio"/>
                 </div>
                 <div>
                     <p>Destino económico</p>
@@ -63,14 +66,20 @@ export function AddEnrollmentPropertyWindow() {
             <div className="propery-area-container">
                 <div>
                     <p>Area del predio (m<sup>2</sup>)</p>
-                    <input type="number" className="input-area-property"/>
+                    <input type="number" className="input-area-property" value="50"/>
                 </div>
                 <div>
                     <p>Area construida (m<sup>2</sup>)</p>
-                    <input type="number" className="input-area-property"/>
+                    <input type="number" className="input-area-property" value="10"/>
                 </div>
             </div>
-            <button className="register-enrollment-button">Registrar</button>
+            <button onClick={() => changeModalState(!modalState)} className="save-edit-enrollment-property-changes">Guardar cambios</button>
+            <ModalActionPerformed
+                img={editPropertyIcon}
+                title="Predio editado exitosamente"
+                state={modalState}
+                accept={handleClickProperty}
+            />
         </div>
     )
 }

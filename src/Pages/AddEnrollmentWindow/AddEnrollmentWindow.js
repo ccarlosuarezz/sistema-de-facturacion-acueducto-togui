@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
-import addEnrollmentIcon from "../../assets/images/addEnrollment.svg"
 import backIcon from "../../assets/images/back.svg"
+import addEnrollmentIcon from "../../assets/images/addEnrollment.svg"
+import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
 import "./AddEnrollmentWindow.css"
 
 export function AddEnrollmentWindow() {
@@ -11,10 +13,7 @@ export function AddEnrollmentWindow() {
         navigate('/admin/matriculas')
     }
 
-    const handleClickEnrollmentProperty = () => {
-        navigate('/admin/registrar-propiedad-matricula')
-    }
-
+    const [modalState, changeModalState] = useState(false);
 
     return (
         <div className="add-enrollment">
@@ -22,10 +21,6 @@ export function AddEnrollmentWindow() {
             <img src={addEnrollmentIcon} height={100} className="add-enrollment-icon"/>
             <p>Nueva matrícula</p>
             <div className="enrollment-form">
-                <div>
-                    <p>Fecha de adjudicación</p>
-                    <input type="date" className="input-info-enrollment"/>
-                </div>
                 <div>
                     <p>Suscriptor asociado</p>
                     <select className="input-info-enrollment">
@@ -36,6 +31,21 @@ export function AddEnrollmentWindow() {
                         <option>0000000004</option>
                         <option>0000000005</option>
                     </select>
+                </div>
+                <div>
+                    <p>Predio asociado</p>
+                    <select className="input-info-enrollment-property">
+                        <option>00000000000000000000</option>
+                        <option>00000000000000000001</option>
+                        <option>00000000000000000002</option>
+                        <option>00000000000000000003</option>
+                        <option>00000000000000000004</option>
+                        <option>00000000000000000005</option>
+                    </select>
+                </div>
+                <div>
+                    <p>Fecha de adjudicación</p>
+                    <input type="date" className="input-info-enrollment"/>
                 </div>
                 <div>
                     <p>Tipo de servicio</p>
@@ -97,7 +107,13 @@ export function AddEnrollmentWindow() {
                     </div>
                 </div>
             </div>
-            <button onClick={handleClickEnrollmentProperty} className="continue-button-add-enrollment">Continuar</button>
+            <button onClick={() => changeModalState(!modalState)} className="add-enrollment-button">Registrar</button>
+            <ModalActionPerformed
+                img={addEnrollmentIcon}
+                title="Matricula registrada exitosamente"
+                state={modalState}
+                accept={handleClickEnrollments}
+            />
         </div>
     )
 }

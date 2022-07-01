@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import subscriberIcon from "../../assets/images/subscriber.svg"
-import viewIcon from "../../assets/images/view.svg"
 import backIcon from "../../assets/images/back.svg"
+import viewIcon from "../../assets/images/view.svg"
 import "./SubscriberWindow.css"
 
 export function SubscriberWindow() {
@@ -25,18 +25,31 @@ export function SubscriberWindow() {
             <input type="image" src={backIcon} width={40} onClick={handleClickSubscribers} className="button-back"/>
             <img src={subscriberIcon} width={100} className="subscriber-icon"/>
             <p>Nombre1 Nombre2 Apellido1 Apellido2</p>
-            <div className="personal-data-container">
-                <div className="personal-data">
-                    <p><b>C.C: </b>0000000000</p>
-                    <p><b>Dirección: </b>Vereda Gachanzuca</p>
-                </div>
-                <div className="personal-data">
-                    <p><b>Fecha de nacimiento: </b>01/01/2000</p>
-                    <p><b>Telefono: </b>000 000 0000</p>
-                </div>
-                <div className="personal-data">
-                    <p><b>Correo electronico: </b>nombre.apellido@mail.com</p>
-                </div>
+            <div>
+                <table className="table-personal-info">
+                    <tbody>
+                        <tr>
+                            <td>C.C</td> 
+                            <td>0000000000</td>
+                        </tr>
+                        <tr>
+                            <td>Dirección</td>
+                            <td>Vereda gachanzuca</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha de nacimiento</td>
+                            <td>01/01/2000</td>
+                        </tr>
+                        <tr>
+                            <td>Telefono</td>
+                            <td>0000000000</td>
+                        </tr>
+                        <tr>
+                            <td>Correo electronico</td>
+                            <td>nombre.apellido@mail.com</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div className="table-enrollments">
                 <p>Matriculas</p>
@@ -56,14 +69,14 @@ export function SubscriberWindow() {
                             <td>Residencial</td>
                             <td>Vereda Manga</td>
                             <td>Predio 1</td>
-                            <td className="td-show-enrollment"><button onClick={handleClickEnrollment} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
+                            <td><button onClick={handleClickEnrollment} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
                         </tr>
                         <tr>
                             <td>0000000002</td>
                             <td>Agroindustrial</td>
                             <td>Vereda Garibay</td>
                             <td>Predio 2</td>
-                            <td className="td-show-enrollment"><button onClick={handleClickEnrollment} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
+                            <td><button onClick={handleClickEnrollment} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
                         </tr>
                     </tbody>
                 </table>

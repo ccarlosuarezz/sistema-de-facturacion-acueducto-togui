@@ -29,7 +29,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    column-gap: 50px;
+    column-gap: 20px;
     padding: 20px;
 }
 
@@ -39,13 +39,17 @@
     font-size: var(--text-form-size);
 }
 
-.input-info-enrollment {
+.input-info-enrollment, .input-info-enrollment-property {
     width: 200px;
     border: solid 2px;
     border-radius: 10px;
     font-size: var(--text-size);
     padding-inline: 10px;
     padding-block: 5px;
+}
+
+.input-info-enrollment-property {
+    width: 280px;
 }
 
 .input-info-enrollment-financing {
@@ -85,7 +89,7 @@
     justify-content: center;
     align-items: center;
     column-gap: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 }
 
 .financing > div {
@@ -150,7 +154,7 @@
     font-size: var(--text-form-size);
 }
 
-.continue-button-add-enrollment {
+.add-enrollment-button {
     padding-inline: 20px;
     padding-block: 10px;
 }

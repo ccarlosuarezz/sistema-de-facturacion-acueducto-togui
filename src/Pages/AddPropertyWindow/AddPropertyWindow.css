@@ -17,17 +17,10 @@
     margin-top: 20px;
 }
 
-.title-enrollment-property {
+.enrollment-property > p {
     margin: 0;
     font-size: var(--title-size);
     font-weight: bold;
-}
-
-.property-info-text {
-    margin: 0;
-    font-size: var(--text-size);
-    font-weight: bold;
-    padding: 10px;
 }
 
 .enrollment-property-form {

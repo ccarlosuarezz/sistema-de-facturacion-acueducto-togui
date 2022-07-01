@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
-import editEnrollmentIcon from "../../assets/images/enrollment.svg"
 import backIcon from "../../assets/images/back.svg"
+import editEnrollmentIcon from "../../assets/images/enrollment.svg"
+import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
 import "./EditEnrollmentWindow.css"
 
 export function EditEnrollmentWindow() {
@@ -11,9 +13,7 @@ export function EditEnrollmentWindow() {
         navigate('/admin/matricula')
     }
 
-    const handleClickEditEnrollmentProperty = () => {
-        navigate('/admin/editar-propiedad-matricula')
-    }
+    const [modalState, changeModalState] = useState(false);
 
     return (
         <div className="edit-enrollment-window">
@@ -84,8 +84,13 @@ export function EditEnrollmentWindow() {
                     </div>
                 </div>
             </div>
-            <button onClick={handleClickEditEnrollmentProperty} className="edit-property-button">Editar datos del predio</button>
-            <button className="save-edit-enrollment-changes">Guardar cambios</button>
+            <button onClick={() => changeModalState(!modalState)} className="save-edit-enrollment-changes">Guardar cambios</button>
+            <ModalActionPerformed
+                img={editEnrollmentIcon}
+                title="Matricula editada exitosamente"
+                state={modalState}
+                accept={handleClickEnrollment}
+            />
         </div>
     )
 }

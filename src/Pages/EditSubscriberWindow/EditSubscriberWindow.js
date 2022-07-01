@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import editSubscriberIcon from "../../assets/images/editSubscriber.svg"
 import backIcon from "../../assets/images/back.svg"
+import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
 import "./EditSubscriberWindow.css"
 
 export function EditSubscriberWindow() {
@@ -10,6 +12,8 @@ export function EditSubscriberWindow() {
     const handleClickSubscriber = () => {
         navigate('/admin/suscriptor')
     }
+
+    const [modalState, changeModalState] = useState(false);
 
     return (
         <div className="edit-subscriber">
@@ -31,7 +35,13 @@ export function EditSubscriberWindow() {
                     <input type="number" className="input-info-edit-subscriber" value="3000000000"/>
                 </div>
             </div>
-            <button className="save-changes-edit-button">Guardar cambios</button>
+            <button onClick={() => changeModalState(!modalState)} className="save-changes-edit-button">Guardar cambios</button>
+            <ModalActionPerformed
+                img={editSubscriberIcon}
+                title="Suscriptor editado exitosamente"
+                state={modalState}
+                accept={handleClickSubscriber}
+            />
         </div>
     )
 }

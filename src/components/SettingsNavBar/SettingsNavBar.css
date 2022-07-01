@@ -1,4 +1,4 @@
-.nav-bar {
+.settings-nav-bar {
     width: 15vw;
     height: 100vh;
     display: flex;
@@ -22,13 +22,13 @@
     align-self: flex-end;
 }
 
-ul {
+.nav-container ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-p {
+.nav-container p {
     font-size: var(--nav-bar-text-size);
 }
 
@@ -63,22 +63,4 @@ p {
 
 .nav-option:hover {
     background-color: var(--dark-color);
-}
-
-.user-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: auto;
-}
-
-.user-profile {
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
-    text-decoration: none;
-    color: var(--white-color);
-    padding-bottom: 20px;
-    cursor: pointer;
 }

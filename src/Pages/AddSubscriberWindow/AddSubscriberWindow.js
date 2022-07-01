@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import backIcon from "../../assets/images/back.svg"
 import addSubscriberIcon from "../../assets/images/addSubscriber.svg"
+import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
 import "./AddSubscriberWindow.css"
 
 export function AddSubscriberWindow() {
@@ -11,9 +13,7 @@ export function AddSubscriberWindow() {
         navigate('/admin/suscriptores')
     }
 
-    const handleClickAddSubscriber = () => {
-        navigate('/admin/registrar-suscriptor')
-    }
+    const [modalState, changeModalState] = useState(false);
 
     return (
         <div className="add-subscriber">
@@ -65,7 +65,13 @@ export function AddSubscriberWindow() {
                     <input className="input-info-subscriber" type="number"/>
                 </div>
             </div>
-            <button onClick={handleClickAddSubscriber} className="register-button">Registrar</button>
+            <button onClick={() => changeModalState(!modalState)} className="register-button">Registrar</button>
+            <ModalActionPerformed
+                img={addSubscriberIcon}
+                title="Suscriptor registrado exitosamente"
+                state={modalState}
+                accept={handleClickSubscribers}
+            />
         </div>
     )
 }
