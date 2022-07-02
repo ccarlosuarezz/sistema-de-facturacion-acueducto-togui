@@ -1,30 +1,63 @@
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import axios from "axios"
+import { environment } from "../../environments/environment"
 import userIcon from "../../assets/images/user.svg"
 import passwordIcon from "../../assets/images/password.svg"
 import hideIcon from "../../assets/images/hide.svg"
+import { Login } from "../../services/AuthService"
 import "./LoginForm.css"
 
 const LoginForm = ({forgotPassword}) => {
 
     const navigate =  useNavigate()
 
-    const handleClickAdmin = () => {
-        navigate('/admin')
+    const [loginUser, setLoginUser] = useState("")
+    const [loginPassword, setLoginPassword] = useState("")
+    const [invalidAuth, setinvalidAuth] = useState("")
+
+    const handleSubmitLogin = (e) => {
+        setinvalidAuth(false)
+        e.preventDefault();
+        console.log(`${loginUser}, ${loginPassword}`)
+        // alert(`${loginUser}, ${loginPassword}`)
+        const user = {
+            email: loginUser,
+            password: loginPassword
+        };
+        axios.post(environment.APIHost+'/login', user)
+        .then(res => {
+            console.log(res.data)
+            if (res.data.ok) {
+                setinvalidAuth(false)
+                navigate('/admin')
+
+            } else {
+                setinvalidAuth(true)
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+
+        // Login(loginUser, loginPassword)
     }
 
     return (
         <div className="login-form">
-            <p><b>Inicio de sesión</b></p>
+            <p className="login-title"><b>Inicio de sesión</b></p>
+            { invalidAuth &&
+                <p className="auth-error-message">Usuario o contraseña incorrecta</p>
+            }
             <div className="input-login">
                 <img src={userIcon} stroke="black" width={30}></img>
-                <input type="text" placeholder="Usuario" className="input-user"></input>
+                <input type="text" placeholder="Usuario" className="input-user" value={loginUser} onChange={(e) => setLoginUser(e.target.value)}/>
             </div>
             <div className="input-login">
                 <img src={passwordIcon} width={30}></img>
-                <input type="password" placeholder="Contraseña" className="input-password"></input>
+                <input type="password" placeholder="Contraseña" className="input-password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)}/>
                 <img src={hideIcon} width={30}></img>
             </div>
-            <button className="button-login" onClick={handleClickAdmin}><b>Ingresar</b></button>
+            <button className="button-login" onClick={handleSubmitLogin}><b>Ingresar</b></button>
             <a onClick={forgotPassword}>Olvidé mi contraseña</a>
         </div>
     )

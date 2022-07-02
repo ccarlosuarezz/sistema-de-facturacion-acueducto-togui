@@ -6,13 +6,13 @@
     justify-content: center;
     row-gap: 20px;
     align-items: center;
-  }
+}
   
-  .login-form p {
+.login-title {
     padding: 0;
     margin: 0;
     font-size: var(--title-size);
-  }
+}
   
   .login-form a {
     color: #000000;
@@ -49,4 +49,10 @@
   .button-login {
     padding-inline: 135px;
     padding-block: 15px;
+  }
+
+  .auth-error-message {
+    margin: 0;
+    font-size: var(--text-form-size);
+    color: var(--red-color);
   }
