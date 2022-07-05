@@ -1,13 +1,18 @@
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./EnrollmentsWindow.css"
 import enrollmentsIcon from "../../assets/images/enrollment.svg"
 import searchIcon from "../../assets/images/search.svg"
+import warningIcon from "../../assets/images/warning.svg"
 import { ReactComponent as AddEnrollmentIcon } from "../../assets/images/addEnrollment.svg"
+import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
 const defaultIconsColor = "#FFFFFF"
 
 const EnrollmentsWindow = () => {
 
     const navigate =  useNavigate()
+
+    const [modalNotFoundState, setModalNotFoundState] = useState("")
 
     const handleClickSearchEnrollment = () => {
         navigate('/admin/matricula')
@@ -33,6 +38,12 @@ const EnrollmentsWindow = () => {
                     <p>Registrar matrícula</p>
                 </button>
             </div>
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Matricula no encontrada"
+                state={modalNotFoundState}
+                accept={() => setModalNotFoundState(!modalNotFoundState)}
+            />
         </div>
     )
 }

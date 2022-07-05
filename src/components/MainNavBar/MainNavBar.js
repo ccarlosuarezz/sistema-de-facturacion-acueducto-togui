@@ -58,15 +58,12 @@ const MainNavBar = () => {
                 </nav>
             </div>
             <div className="user-container">
-                {/* <OverlayClose onClick={() => {if (modalState) {
-                    changeModalState(false);
-                }}}></OverlayClose> */}
                 <ModalSesion
                     state={modalState}
                     closeFunction={() => changeModalState(false)}
                 />
                 <div onClick={() => changeModalState(!modalState)} className="user-profile">
-                    <p><b>Nombre usuario</b></p>
+                    <p><b>{sessionStorage.getItem('userName')}</b></p>
                     <img src={userProfileIcon} width={40}></img>
                 </div>
             </div>
@@ -75,16 +72,3 @@ const MainNavBar = () => {
 }
 
 export default MainNavBar
-
-const OverlayClose = styled.div`
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: rgba(0,0,0,0.0);
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    z-indez: -1;
-`;

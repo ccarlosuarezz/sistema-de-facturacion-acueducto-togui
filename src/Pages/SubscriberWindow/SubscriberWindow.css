@@ -26,7 +26,6 @@
 }
 
 .table-personal-info {
-    margin-top: 20px;
     border-spacing: 0;
     border:solid var(--green-color) 1px;
     border-radius: 10px;
@@ -78,21 +77,25 @@
 }
 
 .table-enrollments {
-    max-height: 400px;
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .table-enrollments p {
-    margin: 5px;
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
     font-weight: bold;
     font-size: var(--text-size);
 }
 
 .table-enrollments > table{
+    display: block;
+    max-height: 140px;
+    overflow-y: auto;
     border-collapse:separate;
     border-spacing: 0;
     border:solid var(--green-color) 1px;
@@ -155,7 +158,6 @@
 }
 
 .edit-button {
-    margin-top: 10px;
     padding-block: 10px;
     padding-inline: 20px;
     font-size: var(--text-size);

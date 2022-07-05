@@ -2,9 +2,15 @@ import { useNavigate } from "react-router-dom"
 import subscriberIcon from "../../assets/images/subscriber.svg"
 import backIcon from "../../assets/images/back.svg"
 import viewIcon from "../../assets/images/view.svg"
+import { getSubscriber } from "../../services/SubscribersService"
 import "./SubscriberWindow.css"
 
+let subscriber = {};
+
 export function SubscriberWindow() {
+
+    subscriber = getSubscriber();
+    // console.log({subscriber});
 
     const navigate =  useNavigate()
 
@@ -24,29 +30,32 @@ export function SubscriberWindow() {
         <div className="subscriber">
             <input type="image" src={backIcon} width={40} onClick={handleClickSubscribers} className="button-back"/>
             <img src={subscriberIcon} width={100} className="subscriber-icon"/>
-            <p>Nombre1 Nombre2 Apellido1 Apellido2</p>
+            <p>{`${(subscriber.primer_nombre_suscriptor || 'Nombre')}
+                ${(subscriber.segundo_nombre_suscriptor !== null ? subscriber.segundo_nombre_suscriptor: '') || ''}
+                ${subscriber.primer_apellido_suscriptor || ''}
+                ${(subscriber.segundo_apellido_suscriptor !== null ? subscriber.segundo_apellido_suscriptor: '') || ''  }`}</p>
             <div>
                 <table className="table-personal-info">
                     <tbody>
                         <tr>
-                            <td>C.C</td> 
-                            <td>0000000000</td>
+                            <td>{subscriber.abreviatura_tipo_de_documento || 'Documento'}</td> 
+                            <td>{subscriber.id_suscriptor}</td>
                         </tr>
                         <tr>
                             <td>Dirección</td>
-                            <td>Vereda gachanzuca</td>
+                            <td>{subscriber.direccion_suscriptor}</td>
                         </tr>
                         <tr>
                             <td>Fecha de nacimiento</td>
-                            <td>01/01/2000</td>
+                            <td>{subscriber.fecha_nacimiento_suscriptor}</td>
                         </tr>
                         <tr>
                             <td>Telefono</td>
-                            <td>0000000000</td>
+                            <td>{subscriber.telefono_suscriptor}</td>
                         </tr>
                         <tr>
                             <td>Correo electronico</td>
-                            <td>nombre.apellido@mail.com</td>
+                            <td>{subscriber.correo_electronico_suscriptor}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -57,27 +66,32 @@ export function SubscriberWindow() {
                     <thead>
                         <tr>
                             <th>N° de matricula</th>
+                            <th>Estado</th>
                             <th>Tipo de servicio</th>
-                            <th>Dirección</th>
                             <th>Nombre del predio</th>
                             <th>Ver</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>0000000001</td>
-                            <td>Residencial</td>
-                            <td>Vereda Manga</td>
-                            <td>Predio 1</td>
-                            <td><button onClick={handleClickEnrollment} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
-                        </tr>
-                        <tr>
-                            <td>0000000002</td>
-                            <td>Agroindustrial</td>
-                            <td>Vereda Garibay</td>
-                            <td>Predio 2</td>
-                            <td><button onClick={handleClickEnrollment} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
-                        </tr>
+                        {subscriber.enrollments ? subscriber.enrollments.map((enrollment) => {
+                            return (
+                                <tr key={enrollment.id_matricula}>
+                                    <td>{enrollment.id_matricula}</td>
+                                    <td>{enrollment.estado_matricula}</td>
+                                    <td>{enrollment.nombre_servicio}</td>
+                                    <td>{enrollment.nombre_predio}</td>
+                                    <td><button onClick={handleClickEnrollment} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
+                                </tr>
+                            )
+                        }):
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

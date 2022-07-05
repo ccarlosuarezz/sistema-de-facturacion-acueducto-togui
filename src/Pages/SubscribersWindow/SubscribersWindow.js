@@ -1,20 +1,46 @@
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./SubscribersWindow.css"
 import subscribersIcon from "../../assets/images/subscribers.svg"
 import searchIcon from "../../assets/images/search.svg"
+import warningIcon from "../../assets/images/warning.svg"
 import { ReactComponent as AddSubscriberIcon } from "../../assets/images/addSubscriber.svg"
+import { getSubscriberByID } from "../../services/SubscribersService"
+import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
+import { getDocumentType } from "../../services/DocumnetTypeService"
 const defaultIconsColor = "#FFFFFF"
 
 const SubscribersWindow = () => {
 
     const navigate =  useNavigate()
 
-    const handleClickSearchSubscriber = () => {
-        navigate('/admin/suscriptor')
+    const [idSubscriber, setIdSubscriber] = useState("")
+    const [modalNotFoundState, setModalNotFoundState] = useState("")
+
+    const handleClickSearchSubscriber = async (e) => {
+        e.preventDefault();
+        if(idSubscriber) {
+            getSubscriberByID(idSubscriber)
+            .then(res => {
+                if (res) {
+                    navigate('/admin/suscriptor')
+                } else {
+                    setModalNotFoundState(!modalNotFoundState)
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
     }
 
     const handleClickAddSubscriber = () => {
-        navigate('/admin/registrar-suscriptor')
+        getDocumentType()
+        .then(res => {
+            if (res) {
+                navigate('/admin/registrar-suscriptor')
+            }
+        })
     }
 
     return (
@@ -23,7 +49,7 @@ const SubscribersWindow = () => {
             <p className="subscribers-title"><b>Suscriptores</b></p>
             <div className="form-search-subscriber">
                 <div className="search-subscriber">
-                    <input type="number" placeholder="N° de documento del suscriptor" className="input-id-subscriber"></input>
+                    <input type="number" placeholder="N° de documento del suscriptor" className="input-id-subscriber" value={idSubscriber} onChange={(e) => setIdSubscriber(e.target.value)}/>
                     <button onClick={handleClickSearchSubscriber} className="button-search">
                         <img src={searchIcon} width={30}/>
                     </button>
@@ -33,6 +59,12 @@ const SubscribersWindow = () => {
                     <p>Registrar suscriptor</p>
                 </button>
             </div>
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Suscriptor no encontrado"
+                state={modalNotFoundState}
+                accept={() => setModalNotFoundState(!modalNotFoundState)}
+            />
         </div>
     )
 }

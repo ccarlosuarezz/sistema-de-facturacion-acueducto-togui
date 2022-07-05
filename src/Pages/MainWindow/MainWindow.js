@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Redirect } from "react-router-dom";
 import MainNavBar from "../../components/MainNavBar/MainNavBar"
 import Welcome from "../../components/Welcome/Welcome";
 import SubscribersWindow from "../SubscribersWindow/SubscribersWindow";
@@ -22,7 +22,7 @@ const MainWindow = () => {
         <div className="main-window">
             <MainNavBar/>
             <Routes>
-                <Route path="" element={<Welcome/>} />
+                <Route path="" element={<Welcome/>}/>
                 <Route path="suscriptores" element={<SubscribersWindow/>}/>
                 <Route path="suscriptor" element={<SubscriberWindow/>}/>
                 <Route path="registrar-suscriptor" element={<AddSubscriberWindow/>}/>

@@ -55,14 +55,14 @@ export function PropertyWindow() {
                     </tbody>
                 </table>
             </div>
-            <div className="table-enrollments">
+            <div className="table-enrollments-property">
                 <p>Matriculas</p>
                 <table>
                     <thead>
                         <tr>
                             <th>N° de matricula</th>
+                            <th>Estado</th>
                             <th>Tipo de servicio</th>
-                            <th>Dirección</th>
                             <th>Nombre del predio</th>
                             <th>Ver</th>
                         </tr>

@@ -5,7 +5,6 @@ import { environment } from "../../environments/environment"
 import userIcon from "../../assets/images/user.svg"
 import passwordIcon from "../../assets/images/password.svg"
 import hideIcon from "../../assets/images/hide.svg"
-import { Login } from "../../services/AuthService"
 import "./LoginForm.css"
 
 const LoginForm = ({forgotPassword}) => {
@@ -17,21 +16,19 @@ const LoginForm = ({forgotPassword}) => {
     const [invalidAuth, setinvalidAuth] = useState("")
 
     const handleSubmitLogin = (e) => {
-        setinvalidAuth(false)
         e.preventDefault();
-        console.log(`${loginUser}, ${loginPassword}`)
-        // alert(`${loginUser}, ${loginPassword}`)
+        setinvalidAuth(false)
         const user = {
             email: loginUser,
             password: loginPassword
         };
         axios.post(environment.APIHost+'/login', user)
         .then(res => {
-            console.log(res.data)
             if (res.data.ok) {
                 setinvalidAuth(false)
+                sessionStorage.setItem('token', res.data.token)
+                sessionStorage.setItem('userName', res.data.message)
                 navigate('/admin')
-
             } else {
                 setinvalidAuth(true)
             }

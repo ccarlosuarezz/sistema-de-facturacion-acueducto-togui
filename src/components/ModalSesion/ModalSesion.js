@@ -10,6 +10,8 @@ export function ModalSesion({state, closeFunction}) {
     const navigate =  useNavigate()
 
     const handleClickExit = () => {
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('userName');
         navigate('/')
     }
 
