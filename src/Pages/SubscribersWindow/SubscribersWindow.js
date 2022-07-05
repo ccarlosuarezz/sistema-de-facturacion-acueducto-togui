@@ -41,6 +41,9 @@ const SubscribersWindow = () => {
                 navigate('/admin/registrar-suscriptor')
             }
         })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     return (

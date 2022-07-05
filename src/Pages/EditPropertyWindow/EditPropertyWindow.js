@@ -3,14 +3,19 @@ import { useNavigate } from "react-router-dom"
 import backIcon from "../../assets/images/back.svg"
 import editPropertyIcon from "../../assets/images/editProperty.svg"
 import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
+import { getProperty } from "../../services/PropertiesService";
 import "./EditPropertyWindow.css"
 
+let property = {};
+
 export function EditPropertyWindow() {
+
+    property = getProperty()
 
     const navigate =  useNavigate()
 
     const handleClickProperty = () => {
-        navigate('/admin/predio')
+        navigate('/admin/predio/'+property.id_numero_predial)
     }
 
     const [modalState, changeModalState] = useState(false);
@@ -23,11 +28,11 @@ export function EditPropertyWindow() {
             <div className="enrollment-property-form">
                 <div>
                     <p>Número predial anterior</p>
-                    <input type="number" className="input-info-enrollment-property input-info-enrollment-property-number" value="00000000000000000000"/>
+                    <input type="number" className="input-info-enrollment-property input-info-enrollment-property-number" value={property.numero_predial_anterior} onChange={(e) => setImmediate(e.target.value)}/>
                 </div>
                 <div>
                     <p>Nombre</p>
-                    <input type="text" className="input-info-enrollment-property" value="Nombre del predio"/>
+                    <input type="text" className="input-info-enrollment-property" value={property.nombre_predio} onChange={(e) => setImmediate(e.target.value)}/>
                 </div>
                 <div>
                     <p>Destino económico</p>
@@ -66,11 +71,11 @@ export function EditPropertyWindow() {
             <div className="propery-area-container">
                 <div>
                     <p>Area del predio (m<sup>2</sup>)</p>
-                    <input type="number" className="input-area-property" value="50"/>
+                    <input type="number" className="input-area-property" value={property.area_predio} onChange={(e) => setImmediate(e.target.value)}/>
                 </div>
                 <div>
                     <p>Area construida (m<sup>2</sup>)</p>
-                    <input type="number" className="input-area-property" value="10"/>
+                    <input type="number" className="input-area-property" value={property.area_construccion} onChange={(e) => setImmediate(e.target.value)}/>
                 </div>
             </div>
             <button onClick={() => changeModalState(!modalState)} className="save-edit-enrollment-property-changes">Guardar cambios</button>

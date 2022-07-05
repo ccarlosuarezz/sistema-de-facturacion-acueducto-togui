@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import backIcon from "../../assets/images/back.svg"
 import addSubscriberIcon from "../../assets/images/addSubscriber.svg"
 import warningIcon from "../../assets/images/warning.svg"
 import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
-import { getDocumentTypesValues } from "../../services/DocumnetTypeService";
+import { getDocumentType, getDocumentTypesValues } from "../../services/DocumnetTypeService";
 import "./AddSubscriberWindow.css"
 import { addSubscriber } from "../../services/SubscribersService";
 
@@ -97,9 +97,8 @@ export function AddSubscriberWindow() {
                         value={documentTypeState}
                         onChange={(e) => setDocumentTypeState(e.target.value)}
                     >
-                        <option key={undefined} value={undefined}>-</option>
-                        {
-                        documentTypes.map(documentType => {
+                        <option key={""} value={""}>-</option>
+                        {documentTypes.map(documentType => {
                             return(
                                 <option key={documentType.id_tipo_de_documento}
                                     value={documentType.id_tipo_de_documento}>

@@ -10,7 +10,6 @@ import { editSubscriber, getSubscriber, getSubscriberByID } from "../../services
 let subscriber = {};
 
 export function EditSubscriberWindow() {
-
     
     subscriber = getSubscriber()
 
@@ -47,14 +46,14 @@ export function EditSubscriberWindow() {
     }
 
     const handleClickSubscriber = () => {
-        navigate('/admin/suscriptor')
+        navigate('/admin/suscriptor/'+subscriber.id_suscriptor)
     }
 
     const handleClickEditSubscriberSuccesfull = () => {
         changeModalState(!modalState)
         getSubscriberByID(subscriber.id_suscriptor)
         .then(res => {
-            navigate('/admin/suscriptor')
+            navigate('/admin/suscriptor/'+subscriber.id_suscriptor)
         })
         .catch(err => {
             console.log(err)

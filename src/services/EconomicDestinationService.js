@@ -1,18 +1,18 @@
 import axios from "axios"
 import { environment } from "../environments/environment"
 
-let documentTypes = {};
+let economicDestinationList = [];
 
-export const getDocumentType = () => new Promise((resolve, reject) => {
+export const getEconomicDestination = () => new Promise((resolve, reject) => {
     const config = {
         headers: {
             token: sessionStorage.getItem('token')
         }
     }
-    axios.get(environment.APIHost+'/getDocumentType', config)
+    axios.get(environment.APIHost+'/getEconomicalDestine', config)
     .then(res => {
         if (res.data.ok) {
-            documentTypes = res.data.result
+            economicDestinationList = res.data.result
             resolve(true)
         }
     })
@@ -21,6 +21,6 @@ export const getDocumentType = () => new Promise((resolve, reject) => {
     })
 })
 
-export const getDocumentTypesValues = () => {
-    return documentTypes;
+export const getEconomicDestinationList = () => {
+    return economicDestinationList;
 }

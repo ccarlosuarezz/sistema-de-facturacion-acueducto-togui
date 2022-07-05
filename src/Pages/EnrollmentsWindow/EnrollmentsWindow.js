@@ -6,16 +6,31 @@ import searchIcon from "../../assets/images/search.svg"
 import warningIcon from "../../assets/images/warning.svg"
 import { ReactComponent as AddEnrollmentIcon } from "../../assets/images/addEnrollment.svg"
 import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
+import { getEnrollmentByID } from "../../services/EnrollmentsService"
 const defaultIconsColor = "#FFFFFF"
 
 const EnrollmentsWindow = () => {
 
     const navigate =  useNavigate()
 
+    const [idEnrollment, setIdEnrollment] = useState("")
     const [modalNotFoundState, setModalNotFoundState] = useState("")
 
-    const handleClickSearchEnrollment = () => {
-        navigate('/admin/matricula')
+    const handleClickSearchEnrollment = (e) => {
+        e.preventDefault();
+        if (idEnrollment) {
+            getEnrollmentByID(idEnrollment)
+            .then(res => {
+                if (res) {
+                    navigate('/admin/matricula/'+idEnrollment)
+                } else {
+                    setModalNotFoundState(!modalNotFoundState)
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
     }
 
     const handleClickAddEnrollment = () => {
@@ -28,7 +43,7 @@ const EnrollmentsWindow = () => {
             <p className="enrollments-title"><b>Matrículas</b></p>
             <div className="form-search-enrollment">
                 <div className="search-enrollment">
-                    <input type="number" placeholder="N° de matrícula" className="input-id-enrollment"></input>
+                    <input type="number" placeholder="N° de matrícula" className="input-id-enrollment" value={idEnrollment} onChange={(e) => setIdEnrollment(e.target.value)}/>
                     <button onClick={handleClickSearchEnrollment} className="button-search">
                         <img src={searchIcon} width={30}/>
                     </button>

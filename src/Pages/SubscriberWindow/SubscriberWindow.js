@@ -11,12 +11,12 @@ let subscriber = {};
 export function SubscriberWindow() {
     useEffect(function () {
         const params = new URLSearchParams(window.location.pathname);
-
-        console.log(params.get("idSubscriber"))
+        // console.log(params.get("idSubscriber"))
         // getSubscriberByID()
         // .then()
         // .catch()
     })
+    
     subscriber = getSubscriber();
     // console.log({subscriber});
 
@@ -27,11 +27,11 @@ export function SubscriberWindow() {
     }
 
     const handleClickEditSubscriber = () => {
-        navigate('/admin/editar-suscriptor')
+        navigate('/admin/editar-suscriptor/'+subscriber.id_suscriptor)
     }
 
-    const handleClickEnrollment = () => {
-        navigate('/admin/matricula')
+    const handleClickEnrollment = (idEnrollment) => {
+        navigate('/admin/matricula/'+idEnrollment)
     }
 
     return (
@@ -90,7 +90,7 @@ export function SubscriberWindow() {
                                     <td>{enrollment.estado_matricula}</td>
                                     <td>{enrollment.nombre_servicio}</td>
                                     <td>{enrollment.nombre_predio}</td>
-                                    <td><button onClick={handleClickEnrollment} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
+                                    <td><button onClick={handleClickEnrollment(enrollment.id_matricula)} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
                                 </tr>
                             )
                         }):

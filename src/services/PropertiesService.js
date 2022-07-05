@@ -19,10 +19,25 @@ export const getPropertyByID = (idProperty) => new Promise((resolve, reject) => 
         }
     })
     .catch(err => {
-        console.log(err)
+        reject(err)
     })
 })
 
 export const getProperty = () => {
     return property;
 }
+
+export const addProperty = (newSubscriber) => new Promise((resolve, reject) => {
+    const config = {
+        headers: {
+            token: sessionStorage.getItem('token')
+        }
+    }
+    axios.post(environment.APIHost+'/addSubscriber', newSubscriber, config)
+    .then(res => {
+        resolve(res)
+    })
+    .catch(err => {
+        reject(err)
+    })
+})

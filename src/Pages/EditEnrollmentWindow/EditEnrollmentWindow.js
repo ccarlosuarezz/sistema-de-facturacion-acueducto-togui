@@ -3,14 +3,19 @@ import { useNavigate } from "react-router-dom"
 import backIcon from "../../assets/images/back.svg"
 import editEnrollmentIcon from "../../assets/images/enrollment.svg"
 import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
+import { getEnrollment } from "../../services/EnrollmentsService";
 import "./EditEnrollmentWindow.css"
 
+let enrollment = {};
+
 export function EditEnrollmentWindow() {
+
+    enrollment = getEnrollment()
 
     const navigate =  useNavigate()
 
     const handleClickEnrollment = () => {
-        navigate('/admin/matricula')
+        navigate('/admin/matricula/'+enrollment.id_matricula)
     }
 
     const [modalState, changeModalState] = useState(false);

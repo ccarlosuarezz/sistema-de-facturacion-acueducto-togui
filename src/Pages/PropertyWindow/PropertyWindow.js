@@ -1,10 +1,20 @@
+import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import propertyIcon from "../../assets/images/property.svg"
 import backIcon from "../../assets/images/back.svg"
 import viewIcon from "../../assets/images/view.svg"
 import "./PropertyWindow.css"
+import { getProperty } from "../../services/PropertiesService"
+
+let property = {};
 
 export function PropertyWindow() {
+
+    useEffect(function () {
+
+    })
+
+    property = getProperty()
 
     const navigate =  useNavigate()
 
@@ -13,11 +23,11 @@ export function PropertyWindow() {
     }
 
     const handleClickEditProperty = () => {
-        navigate('/admin/editar-predio')
+        navigate('/admin/editar-predio/'+property.id_numero_predial)
     }
 
-    const handleClickEnrollment = () => {
-        navigate('/admin/matricula')
+    const handleClickEnrollment = (idEnrollment) => {
+        navigate('/admin/matricula/'+idEnrollment)
     }
 
     return (
@@ -29,28 +39,28 @@ export function PropertyWindow() {
                 <table className="table-property-info">
                     <tbody>
                         <tr>
-                            <td>N° predial anterior</td> 
-                            <td>00000000000000000000</td>
+                            <td>N° predial</td> 
+                            <td>{property.numero_predial_anterior}</td>
                         </tr>
                         <tr>
                             <td>Nombre</td>
-                            <td>Nombre del predio</td>
+                            <td>{property.nombre_predio}</td>
                         </tr>
                         <tr>
                             <td>Destino económico</td>
-                            <td>Residencial</td>
+                            <td>{property.destino_economico_predio}</td>
                         </tr>
                         <tr>
                             <td>Dirección</td>
-                            <td>Boyacá, Togüí, Vereda Gachanzuca</td>
+                            <td>{property.direccion_predio.direccion}</td>
                         </tr>
                         <tr>
                             <td>Area del predio</td>
-                            <td>50 m<sup>2</sup></td>
+                            <td>{property.area_predio} m<sup>2</sup></td>
                         </tr>
                         <tr>
                             <td>Area construida</td>
-                            <td>10 m<sup>2</sup></td>
+                            <td>{property.area_construccion} m<sup>2</sup></td>
                         </tr>
                     </tbody>
                 </table>
@@ -68,13 +78,25 @@ export function PropertyWindow() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>0000000002</td>
-                            <td>Agroindustrial</td>
-                            <td>Vereda Garibay</td>
-                            <td>Predio 2</td>
-                            <td className="td-show-enrollment"><button onClick={handleClickEnrollment} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
-                        </tr>
+                        {property.matriculas ? property.matriculas.map((enrollment) => {
+                            return (
+                                <tr key={enrollment.id_matricula}>
+                                    <td>{enrollment.id_matricula}</td>
+                                    <td>{enrollment.estado_matricula}</td>
+                                    <td>{enrollment.nombre_servicio}</td>
+                                    <td>{enrollment.nombre_predio}</td>
+                                    <td><button onClick={handleClickEnrollment(enrollment.id_matricula)} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
+                                </tr>
+                            )
+                        }):
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
