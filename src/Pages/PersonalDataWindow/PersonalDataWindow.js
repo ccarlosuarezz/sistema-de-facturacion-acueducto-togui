@@ -45,32 +45,6 @@ export default function PersonalDataWindow() {
             <img src={userProfileIcon} width={100} className="user-profile-icon"/>
             <div className="personal-data-container">
                 <div>
-                    <p>Nombres</p>
-                    <div className="personal-data-edit">
-                        <p>Nombre1 Nombre2</p>
-                        <input type="image" src={editIcon} height={25} onClick={() => changeModalStateNames(!modalStateNames)}/>
-                    </div>
-                    <ModalEditPersonalData
-                        state={modalStateNames}
-                        title="Nombres"
-                        inputType="text"
-                        acceptFunction={handleClickNames}
-                    />
-                </div>
-                <div>
-                    <p>Apellidos</p>
-                    <div className="personal-data-edit">
-                        <p>Apellido1 Apellido2</p>
-                        <input type="image" src={editIcon} height={25} onClick={() => changeModalStateLastNames(!modalStateLastNames)}/>
-                    </div>
-                    <ModalEditPersonalData
-                        state={modalStateLastNames}
-                        title="Apellidos"
-                        inputType="text"
-                        acceptFunction={handleClickLastNames}
-                    />
-                </div>
-                <div>
                     <p>Correo personal</p>
                     <div className="personal-data-edit">
                         <p>correo.personal@mail.com</p>
@@ -81,19 +55,6 @@ export default function PersonalDataWindow() {
                         title="Correo personal"
                         inputType="text"
                         acceptFunction={handleClickPersonalEmail}
-                    />
-                </div>
-                <div>
-                    <p>Correo de acceso</p>
-                    <div className="personal-data-edit">
-                        <p>correo.acceso@mail.com</p>
-                        <input type="image" src={editIcon} height={25} onClick={() => changeModalStateAccessEmail(!modalStateAccessEmail)}/>
-                    </div>
-                    <ModalEditPersonalData
-                        state={modalStateAccessEmail}
-                        title="Correo de acceso"
-                        inputType="text"
-                        acceptFunction={handleClickAccessEmail}
                     />
                 </div>
                 <div>

@@ -24,7 +24,7 @@ const MainWindow = () => {
             <Routes>
                 <Route path="" element={<Welcome/>}/>
                 <Route path="suscriptores" element={<SubscribersWindow/>}/>
-                <Route path="suscriptor" element={<SubscriberWindow/>}/>
+                <Route path="suscriptor/:idSubscriber" element={<SubscriberWindow/>}/>
                 <Route path="registrar-suscriptor" element={<AddSubscriberWindow/>}/>
                 <Route path="editar-suscriptor" element={<EditSubscriberWindow/>}/>
                 <Route path="predios" element={<PropertiesWindow/>}/>

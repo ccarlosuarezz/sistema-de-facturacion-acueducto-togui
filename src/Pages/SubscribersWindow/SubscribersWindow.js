@@ -17,13 +17,13 @@ const SubscribersWindow = () => {
     const [idSubscriber, setIdSubscriber] = useState("")
     const [modalNotFoundState, setModalNotFoundState] = useState("")
 
-    const handleClickSearchSubscriber = async (e) => {
+    const handleClickSearchSubscriber = (e) => {
         e.preventDefault();
         if(idSubscriber) {
             getSubscriberByID(idSubscriber)
             .then(res => {
                 if (res) {
-                    navigate('/admin/suscriptor')
+                    navigate('/admin/suscriptor/'+idSubscriber)
                 } else {
                     setModalNotFoundState(!modalNotFoundState)
                 }

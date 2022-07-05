@@ -41,3 +41,18 @@ export const addSubscriber = (newSubscriber) => new Promise((resolve, reject) =>
         reject(err)
     })
 })
+
+export const editSubscriber = (subscriberEdited) => new Promise((resolve, reject) => {
+    const config = {
+        headers: {
+            token: sessionStorage.getItem('token')
+        }
+    }
+    axios.post(environment.APIHost+'/updateSubscriber', subscriberEdited, config)
+    .then(res => {
+        resolve(res)
+    })
+    .catch(err => {
+        reject(err)
+    })
+})
