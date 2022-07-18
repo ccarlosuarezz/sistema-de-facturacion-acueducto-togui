@@ -26,6 +26,8 @@
     align-items: center;
     column-gap: 50px;
     padding: 10px;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 .enrollment-property-form > div > p {
@@ -35,50 +37,7 @@
 }
 
 .input-info-enrollment-property {
-    width: 200px;
-    border: solid 2px;
-    border-radius: 10px;
-    font-size: var(--text-size);
-    padding-inline: 10px;
-    padding-block: 5px;
-}
-
-.input-info-enrollment-property-number {
     width: 250px;
-}
-
-.address-property-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-}
-
-.address-property-container > p {
-    margin: 0;
-    font-size: var(--text-size);
-    font-weight: bold;
-}
-
-.address-property-container > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    column-gap: 30px;
-    border: solid 2px;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.address-property-container > div > div > p {
-    margin: 0;
-    font-size: var(--text-form-size);
-}
-
-.input-address-property {
-    width: 180px;
     border: solid 2px;
     border-radius: 10px;
     font-size: var(--text-size);
@@ -91,9 +50,9 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    column-gap: 40px;
+    column-gap: 50px;
     padding: 10px;
-    padding-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 .propery-area-container > div > p {

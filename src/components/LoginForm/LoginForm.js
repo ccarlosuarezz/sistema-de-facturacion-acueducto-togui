@@ -27,7 +27,9 @@ const LoginForm = ({forgotPassword}) => {
             if (res.data.ok) {
                 setinvalidAuth(false)
                 sessionStorage.setItem('token', res.data.token)
-                sessionStorage.setItem('userName', res.data.message)
+                sessionStorage.setItem('userName', res.data.message.username)
+                sessionStorage.setItem('idUser', res.data.message.id_user)
+                sessionStorage.setItem('idRol', res.data.message.id_rol)
                 navigate('/admin')
             } else {
                 setinvalidAuth(true)

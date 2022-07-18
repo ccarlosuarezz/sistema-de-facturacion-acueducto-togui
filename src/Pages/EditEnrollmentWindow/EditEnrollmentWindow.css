@@ -53,8 +53,20 @@
     padding-block: 5px;
 }
 
+.input-info-edit-enrollment-subscriber {
+    width: 150px;
+}
+
+.input-info-edit-enrollment-property {
+    width: 300px;
+}
+
 .input-info-edit-enrollment-state {
-    width: 250px;
+    width: 220px;
+}
+
+.input-info-edit-enrollment-service {
+    width: 170px;
 }
 
 .input-info-edit-enrollment-watermeter {
@@ -99,12 +111,29 @@
 
 .edit-enrollment-watermeter-container {
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     row-gap: 10px;
     column-gap: 30px;
 }
 
-.edit-enrollment-watermeter-container > div > p, .input-info-edit-enrollment-watermeter {
+.edit-enrollment-watermeter-container > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-enrollment-watermeter-container > div p {
+    margin: 0;
+    font-size: var(--text-form-size);
+}
+
+.div-percentaje-calibration {
+    grid-area: 2/1/3/3;
+}
+
+.input-disabled {
     opacity: 0.5;
 }
 

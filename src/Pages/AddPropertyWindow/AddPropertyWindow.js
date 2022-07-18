@@ -20,7 +20,6 @@ export function AddPropertyWindow() {
     departmentList = getDepartmentList()
     municipalityList = getMunicipalityList()
     sidewalkList = getSideWalkList()
-    // console.log({departmentList}, {municipalityList}, {sidewalkList})
 
     const navigate =  useNavigate()
 
@@ -31,10 +30,10 @@ export function AddPropertyWindow() {
 
     const [propertyNumberState, setPropertyNumberState] = useState("")
     const [propertyNameState, setPropertyNameState] = useState("")
-    const [economicDestinationState, setEconomicDestinationState] = useState("")
-    const [departmentState, setDepartmentState] = useState("")
-    const [municipalityState, setMunicipalityState] = useState("")
-    const [sidewalkState, setSidewalkState] = useState("")
+    const [economicDestinationState, setEconomicDestinationState] = useState(economicDestinationList[0])
+    const [departmentState, setDepartmentState] = useState(departmentList[1].nombre_lugar)
+    const [municipalityState, setMunicipalityState] = useState(municipalityList[0].nombre_lugar)
+    const [sidewalkState, setSidewalkState] = useState(sidewalkList[0].id_lugar+','+sidewalkList[0].nombre_lugar)
     const [propertyAreaState, setPropertyAreaState] = useState("")
     const [builtAreaState, setBuiltAreaState] = useState("")
 
@@ -49,16 +48,19 @@ export function AddPropertyWindow() {
             builtAreaState === "") {
             changeModalWarningState(!modalwarningState)
         } else {
+            let addressInput = sidewalkState.split(',')
+            console.log(sidewalkState)
             const newProperty = {
                 id_numero_predial: propertyNumberState === "" ? null: propertyNumberState,
                 numero_predial_anterior: propertyNumberState === "" ? null: propertyNumberState,
-                direccion_predio: propertyNameState === "" && sidewalkState === "" ? null: propertyNameState+' '+sidewalkState.name,
+                direccion_predio: propertyNameState === "" && addressInput === "" ? null: propertyNameState+', Vereda '+addressInput[1],
                 nombre_predio: propertyNameState === "" ? null: propertyNameState,
                 area_predio: propertyAreaState === "" ? null: propertyAreaState,
-                area_construccion_predio: builtAreaState === "" ? null: builtAreaState,
+                area_construccion: builtAreaState === "" ? null: builtAreaState,
                 destino_economico_predio: economicDestinationState === "" ? null: economicDestinationState,
-                id_lugar: sidewalkState === "" ? null: sidewalkState.id
+                id_lugar: sidewalkState === "" ? null: addressInput[0],
             };
+            // console.log(newProperty)
             addProperty(newProperty)
             .then(res => {
                 if (res.data.ok) {
@@ -118,7 +120,6 @@ export function AddPropertyWindow() {
                         value={economicDestinationState}
                         onChange={(e) => setEconomicDestinationState(e.target.value)}
                     >
-                        <option key={""} value={""}>-</option>
                         {economicDestinationList.map(economicDestination => {
                             return(
                                 <option key={economicDestination}
@@ -139,11 +140,10 @@ export function AddPropertyWindow() {
                             value={departmentState}
                             onChange={(e) => setDepartmentState(e.target.value)}
                         >
-                            <option key={""} value={""}>-</option>
                             {departmentList.map(department => {
                                 return(
                                     <option key={department.id_lugar}
-                                        value={department.nombre_lugar}>
+                                        value={department.id_lugar}>
                                         {department.nombre_lugar}
                                     </option>
                                 )
@@ -156,11 +156,10 @@ export function AddPropertyWindow() {
                             value={municipalityState}
                             onChange={(e) => setMunicipalityState(e.target.value)}
                         >
-                            <option key={""} value={""}>-</option>
                             {municipalityList.map(municipality => {
                                 return(
                                     <option key={municipality.id_lugar}
-                                        value={municipality.nombre_lugar}>
+                                        value={municipality.id_lugar}>
                                         {municipality.nombre_lugar}
                                     </option>
                                 )
@@ -171,13 +170,12 @@ export function AddPropertyWindow() {
                         <p>Vereda *</p>
                         <select className="input-address-property"
                             value={sidewalkState}
-                            onChange={(e) => setSidewalkState(e.target.value)}
+                            onChange={(e) => {setSidewalkState(e.target.value); console.log(sidewalkState)}}
                         >
-                            <option key={""} value={""}>-</option>
                             {sidewalkList.map(sidewalk => {
                                 return(
                                     <option key={sidewalk.id_lugar}
-                                        value={{id:sidewalk.id_lugar, name:sidewalk.nombre_lugar}}>
+                                        value={sidewalk.id_lugar+','+sidewalk.nombre_lugar}>
                                         {sidewalk.nombre_lugar}
                                     </option>
                                 )

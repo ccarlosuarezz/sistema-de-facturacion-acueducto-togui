@@ -36,7 +36,9 @@ export function EditSubscriberWindow() {
             }
             editSubscriber(subscriberEdited)
             .then(res => {
-                changeModalState(!modalState)
+                if (res.data.ok) {
+                    changeModalState(!modalState)
+                }
             })
             .catch(err => {
                 console.log(err)
@@ -53,7 +55,9 @@ export function EditSubscriberWindow() {
         changeModalState(!modalState)
         getSubscriberByID(subscriber.id_suscriptor)
         .then(res => {
-            navigate('/admin/suscriptor/'+subscriber.id_suscriptor)
+            if (res) {
+                navigate('/admin/suscriptor/'+subscriber.id_suscriptor)
+            }
         })
         .catch(err => {
             console.log(err)
@@ -100,7 +104,7 @@ export function EditSubscriberWindow() {
                 img={warningIcon}
                 title="Algunos datos son obligatorios"
                 state={modalWarningState}
-                accept={handleClickEditSubscriber}
+                accept={() => changeModalWarningState(!modalWarningState)}
             />
             <ModalActionPerformed
                 img={warningIcon}

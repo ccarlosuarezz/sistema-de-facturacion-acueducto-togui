@@ -1,18 +1,15 @@
-import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import propertyIcon from "../../assets/images/property.svg"
 import backIcon from "../../assets/images/back.svg"
 import viewIcon from "../../assets/images/view.svg"
 import "./PropertyWindow.css"
 import { getProperty } from "../../services/PropertiesService"
+import { getEconomicDestination } from "../../services/EconomicDestinationService"
+import { getAddress } from "../../services/AddressService"
 
 let property = {};
 
 export function PropertyWindow() {
-
-    useEffect(function () {
-
-    })
 
     property = getProperty()
 
@@ -23,7 +20,23 @@ export function PropertyWindow() {
     }
 
     const handleClickEditProperty = () => {
-        navigate('/admin/editar-predio/'+property.id_numero_predial)
+        getEconomicDestination()
+        .then(res => {
+            if (res) {
+                getAddress()
+                .then(resAddress => {
+                    if (resAddress) {
+                        navigate('/admin/editar-predio/'+property.id_numero_predial)
+                    }
+                })
+                .catch(errAddress => {
+                    console.log(errAddress)
+                })
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     const handleClickEnrollment = (idEnrollment) => {
@@ -52,7 +65,7 @@ export function PropertyWindow() {
                         </tr>
                         <tr>
                             <td>Dirección</td>
-                            <td>{property.direccion_predio.direccion}</td>
+                            <td>{property.direccion_predio ? property.direccion_predio.direccion: ''}</td>
                         </tr>
                         <tr>
                             <td>Area del predio</td>

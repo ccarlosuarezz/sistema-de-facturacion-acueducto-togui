@@ -7,7 +7,7 @@ import warningIcon from "../../assets/images/warning.svg"
 import { ReactComponent as AddSubscriberIcon } from "../../assets/images/addSubscriber.svg"
 import { getSubscriberByID } from "../../services/SubscribersService"
 import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
-import { getDocumentType } from "../../services/DocumnetTypeService"
+import { getDocumentType } from "../../services/DocumentTypeService"
 const defaultIconsColor = "#FFFFFF"
 
 const SubscribersWindow = () => {

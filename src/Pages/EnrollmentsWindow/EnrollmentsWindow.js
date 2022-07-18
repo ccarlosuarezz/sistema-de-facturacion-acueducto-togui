@@ -7,6 +7,8 @@ import warningIcon from "../../assets/images/warning.svg"
 import { ReactComponent as AddEnrollmentIcon } from "../../assets/images/addEnrollment.svg"
 import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
 import { getEnrollmentByID } from "../../services/EnrollmentsService"
+import { getServiceTypes } from "../../services/ServiceTypeService"
+import { getFinancingTypes } from "../../services/FinancingService"
 const defaultIconsColor = "#FFFFFF"
 
 const EnrollmentsWindow = () => {
@@ -34,7 +36,23 @@ const EnrollmentsWindow = () => {
     }
 
     const handleClickAddEnrollment = () => {
-        navigate('/admin/registrar-matricula')
+        getServiceTypes()
+        .then(res => {
+            if (res) {
+                getFinancingTypes()
+                .then(res => {
+                    if (res) {
+                        navigate('/admin/registrar-matricula')
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     return (

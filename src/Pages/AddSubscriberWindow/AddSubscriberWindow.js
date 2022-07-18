@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import backIcon from "../../assets/images/back.svg"
 import addSubscriberIcon from "../../assets/images/addSubscriber.svg"
 import warningIcon from "../../assets/images/warning.svg"
 import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
-import { getDocumentType, getDocumentTypesValues } from "../../services/DocumnetTypeService";
+import { getDocumentTypesValues } from "../../services/DocumentTypeService";
 import "./AddSubscriberWindow.css"
 import { addSubscriber } from "../../services/SubscribersService";
 
@@ -12,14 +12,14 @@ let documentTypes = [];
 
 export function AddSubscriberWindow() {
 
-    const navigate =  useNavigate()
-
+    documentTypes = getDocumentTypesValues();
+    
     const [modalState, changeModalState] = useState(false);
     const [modalwarningState, changeModalWarningState] = useState(false);
     const [modalErrorState, changeModalErrorState] = useState(false);
     const [modalExistState, changeModalExistState] = useState(false);
 
-    const [documentTypeState, setDocumentTypeState] = useState("")
+    const [documentTypeState, setDocumentTypeState] = useState(documentTypes[0].id_tipo_de_documento)
     const [documentNumberState, setDocumentNumberState] = useState("")
     const [firstNameState, setFirstNameState] = useState("")
     const [secondNameState, setSecondNameState] = useState("")
@@ -30,8 +30,7 @@ export function AddSubscriberWindow() {
     const [mailState, setMailState] = useState("")
     const [phoneState, setPhoneState] = useState("")
 
-    documentTypes = getDocumentTypesValues();
-    // console.log({documentTypes})
+    const navigate =  useNavigate()
 
     const handleClickAddSubscriber = (e) => {
         e.preventDefault();
@@ -97,7 +96,6 @@ export function AddSubscriberWindow() {
                         value={documentTypeState}
                         onChange={(e) => setDocumentTypeState(e.target.value)}
                     >
-                        <option key={""} value={""}>-</option>
                         {documentTypes.map(documentType => {
                             return(
                                 <option key={documentType.id_tipo_de_documento}

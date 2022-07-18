@@ -111,9 +111,14 @@
 
 .watermeter-register-info {
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     row-gap: 10px;
     column-gap: 30px;
+}
+
+.div-percentaje-calibration {
+    grid-area: 2/1/3/3;
 }
 
 .watermeter-register-info > div {
@@ -123,16 +128,21 @@
     align-items: center;
 }
 
-.watermeter-register-info > div > p {
+.input-disabled {
     opacity: 0.5;
 }
 
 .div-info-financing {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     justify-content: center;
     align-items: center;
     column-gap: 20px;
+}
+
+.div-interest-fee {
+    grid-area: 2/1/3/3;
 }
 
 .financing > p, .watermeter > p {

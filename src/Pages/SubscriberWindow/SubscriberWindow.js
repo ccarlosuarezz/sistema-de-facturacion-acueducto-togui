@@ -1,21 +1,13 @@
-import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import subscriberIcon from "../../assets/images/subscriber.svg"
 import backIcon from "../../assets/images/back.svg"
 import viewIcon from "../../assets/images/view.svg"
-import { getSubscriber, getSubscriberByID } from "../../services/SubscribersService"
+import { getSubscriber } from "../../services/SubscribersService"
 import "./SubscriberWindow.css"
 
 let subscriber = {};
 
 export function SubscriberWindow() {
-    useEffect(function () {
-        const params = new URLSearchParams(window.location.pathname);
-        // console.log(params.get("idSubscriber"))
-        // getSubscriberByID()
-        // .then()
-        // .catch()
-    })
     
     subscriber = getSubscriber();
     // console.log({subscriber});

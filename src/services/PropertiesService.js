@@ -27,13 +27,28 @@ export const getProperty = () => {
     return property;
 }
 
-export const addProperty = (newSubscriber) => new Promise((resolve, reject) => {
+export const addProperty = (newProperty) => new Promise((resolve, reject) => {
     const config = {
         headers: {
             token: sessionStorage.getItem('token')
         }
     }
-    axios.post(environment.APIHost+'/addSubscriber', newSubscriber, config)
+    axios.post(environment.APIHost+'/addProperty', newProperty, config)
+    .then(res => {
+        resolve(res)
+    })
+    .catch(err => {
+        reject(err)
+    })
+})
+
+export const editProperty = (propertyEdited) => new Promise((resolve, reject) => {
+    const config = {
+        headers: {
+            token: sessionStorage.getItem('token')
+        }
+    }
+    axios.post(environment.APIHost+'/updateProperty', propertyEdited, config)
     .then(res => {
         resolve(res)
     })

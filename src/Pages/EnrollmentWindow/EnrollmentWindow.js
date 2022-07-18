@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom"
 import backIcon from "../../assets/images/back.svg"
 import enrollmentIcon from "../../assets/images/enrollment.svg"
-import { getEnrollment } from "../../services/EnrollmentsService";
+import { getEnrollment, getEnrollmentStates } from "../../services/EnrollmentsService";
+import { getServiceTypes } from "../../services/ServiceTypeService";
 import "./EnrollmentWindow.css"
 
 let enrollment = {};
@@ -17,7 +18,23 @@ export function EnrollmentWindow() {
     }
 
     const handleClickEditEnrollment = () => {
-        navigate('/admin/editar-matricula/'+enrollment.id_matricula)
+        getEnrollmentStates()
+        .then(resEnrollmentStates => {
+            if (resEnrollmentStates) {
+                getServiceTypes()
+                .then(resServiceType => {
+                    if (resServiceType) {
+                        navigate('/admin/editar-matricula/'+enrollment.id_matricula)
+                    }
+                })
+                .catch(errServiceType => {
+                    console.log(errServiceType)
+                })
+            }
+        })
+        .catch(errEnrollmentStates => {
+            console.log(errEnrollmentStates)
+        })
     }
 
     return (
@@ -34,11 +51,11 @@ export function EnrollmentWindow() {
                         </tr>
                         <tr>
                             <td>Suscriptor asociado</td>
-                            <td>{enrollment.subscriber.nombre}</td>
+                            <td>{enrollment.subscriber ? enrollment.subscriber.nombre : ''}</td>
                         </tr>
                         <tr>
                             <td>Predio asociado</td>
-                            <td>{enrollment.propertyName.nombre_predio}</td>
+                            <td>{enrollment.propertyName ? enrollment.propertyName.nombre_predio : ''}</td>
                         </tr>
                         <tr>
                             <td>Fecha de adjudicación</td>
@@ -46,7 +63,7 @@ export function EnrollmentWindow() {
                         </tr>
                         <tr>
                             <td>Tipo de servicio</td>
-                            <td>{enrollment.serviceType.nombre_servicio}</td>
+                            <td>{enrollment.serviceType ? enrollment.serviceType.nombre_servicio : ''}</td>
                         </tr>
                     </tbody>
                 </table>

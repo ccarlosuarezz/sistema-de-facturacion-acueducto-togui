@@ -61,12 +61,12 @@ export function PropertiesWindow() {
             <p className="enrollments-title"><b>Predios</b></p>
             <div className="form-search-enrollment">
                 <div className="search-enrollment">
-                    <input type="number" placeholder="N° de matrícula" className="input-id-enrollment" value={idProperty} onChange={(e) => setIdProperty(e.target.value)}/>
+                    <input type="number" placeholder="N° de predio" className="input-id-enrollment" value={idProperty} onChange={(e) => setIdProperty(e.target.value)}/>
                     <button onClick={handleClickSearchProperty} className="button-search">
                         <img src={searchIcon} width={30}/>
                     </button>
                 </div>
-                <button onClick={handleClickAddProperty} className="button-register-enrollment">
+                <button onClick={handleClickAddProperty} className="button-register-properties">
                     <AddPropertyIcon width={30} height={30} fill={defaultIconsColor} className="add-enrollment-icon-button"/>
                     <p>Registrar predio</p>
                 </button>

@@ -16,6 +16,9 @@ import { EditEnrollmentWindow } from "../EditEnrollmentWindow/EditEnrollmentWind
 import InvoicingWindow from "../InvoicingWindow/InvoicingWindow"
 import NotFoundWindow from "../NotFoundWindow/NotFoundWindow";
 import './MainWindow.css';
+import { CheckPaymentsWindow } from "../CheckPaymentsWindow/CheckPaymentsWindow";
+import { RegisterSanctionsWindow } from "../RegisterSanctionsWindow/RegisterSanctionsWindow";
+import { GeneratedInvoicesWindow } from "../GeneratedInvoicesWindow/GeneratedInvoicesWindow";
 
 const MainWindow = () => {
     return (
@@ -36,6 +39,9 @@ const MainWindow = () => {
                 <Route path="registrar-matricula" element={<AddEnrollmentWindow/>}/>
                 <Route path="editar-matricula/:idProperty" element={<EditEnrollmentWindow/>}/>
                 <Route path="facturacion" element={<InvoicingWindow/>}/>
+                <Route path="verificar-pagos" element={<CheckPaymentsWindow/>}/>
+                <Route path="registrar-sanciones" element={<RegisterSanctionsWindow/>}/>
+                <Route path="facturas-generadas" element={<GeneratedInvoicesWindow/>}/>
                 <Route path="*" element={<NotFoundWindow/>} />
             </Routes>   
         </div>
