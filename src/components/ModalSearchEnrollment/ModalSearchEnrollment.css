@@ -1,0 +1,94 @@
+.search-enrollment-title {
+    margin: 0;
+    font-weight: bold;
+    font-size: var(--title-size);
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.search-bar > input {
+    width: 170px;
+    border: solid 2px;
+    border-radius: 10px;
+    font-size: var(--text-size);
+    padding-inline: 10px;
+    padding-block: 5px;
+}
+
+.table-enrollments-found {
+    display: block;
+    width: 500px;
+    height: 200px;
+    max-height: 200px;
+    overflow-y: auto;
+    border-collapse:separate;
+    border-spacing: 0;
+    border:solid var(--green-color) 1px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    font-size: var(--text-form-size);
+    margin-bottom: 20px;
+    background-color: var(--green-opaque-color-10);
+}
+
+.table-enrollments-found th, .table-enrollments-found td {
+    border-left:solid var(--green-color) 2px;
+    border-bottom:solid var(--green-color) 2px;
+    padding-inline: 20px;
+    padding-block: 5px;
+    text-align: center;
+}
+
+.table-enrollments-found td:first-child, .table-enrollments-found th:first-child {
+    border-left: none;
+}
+
+.table-enrollments-found thead {
+    background-color: var(--green-opaque-color-80);
+    border-top: none;
+    color: var(--black-color);
+}
+
+.table-enrollments-found td {
+    margin: 0;
+    padding: 0;
+}
+
+.table-enrollments-found tbody tr td {
+    background-color: var(--green-opaque-color-10);
+}
+
+.table-enrollments-found thead th:first-child {
+    border-top-left-radius: 9px;
+}
+
+.table-enrollments-found thead th:last-child {
+    border-top-right-radius: 9px;
+}
+
+.table-enrollments-found tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 9px;
+}
+
+.table-enrollments-found tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 9px;
+}
+
+.row-subscriber-found {
+    width: 180px;
+}
+
+.row-select-enrollment-found {
+    width: 120px;
+}
+
+.button-select-enrollment {
+    margin-block: 5px;
+    padding: 5px;
+}

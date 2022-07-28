@@ -1,0 +1,99 @@
+.generated-invoices {
+    width: 85vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: auto;
+}
+
+.div-table-invoices-generated {
+    margin-top: 10px;
+}
+
+.table-invoices-title {
+    margin: 0;
+    font-size: var(--text-size);
+}
+
+.table-generated-invoices{
+    margin-top: 10px;
+    display: block;
+    width: 800px;
+    height: 320px;
+    max-height: 320px;
+    overflow-y: auto;
+    border-collapse:separate;
+    border-spacing: 0;
+    border:solid var(--green-color) 1px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    font-size: var(--text-form-size);
+    margin-bottom: 20px;
+    background-color: var(--green-opaque-color-10);
+}
+
+.table-generated-invoices th, .table-generated-invoices td {
+    border-left:solid var(--green-color) 2px;
+    border-bottom:solid var(--green-color) 2px;
+    padding-inline: 20px;
+    padding-block: 5px;
+    text-align: center;
+}
+
+.table-generated-invoices td:first-child, .table-generated-invoices th:first-child {
+    border-left: none;
+}
+
+.table-generated-invoices thead {
+    background-color: var(--green-opaque-color-80);
+    border-top: none;
+    color: var(--black-color);
+}
+
+.table-generated-invoices td {
+    margin: 0;
+    padding: 0;
+    padding-inline: 10px;
+}
+
+.table-generated-invoices tbody tr td {
+    background-color: var(--green-opaque-color-10);
+}
+
+.table-generated-invoices thead th:first-child {
+    border-top-left-radius: 9px;
+}
+
+.table-generated-invoices thead th:last-child {
+    border-top-right-radius: 9px;
+}
+
+.table-generated-invoices tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 9px;
+}
+
+.table-generated-invoices tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 9px;
+}
+
+.print-invoices-button {
+    padding-block: 10px;
+    padding-inline: 20px;
+}
+
+.row-invoice-number, .row-enrollment-number {
+    width: 130px;
+}
+
+.row-invoice-subscriber {
+    width: 300px;
+}
+
+.row-invoice-address {
+    width: 180px;
+}
+
+.row-invoive-total {
+    width: 90px;
+}

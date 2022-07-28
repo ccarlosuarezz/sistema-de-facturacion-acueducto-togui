@@ -132,10 +132,6 @@
     background-color: var(--green-opaque-color-10);
 }
 
-.table-enrollments tbody tr td:last-child  {
-    background-color: var(--yellow-color);
-}
-
 .table-enrollments thead th:first-child {
     border-top-left-radius: 9px;
 }
@@ -154,7 +150,8 @@
 
 .show-enrollment {
     background-color: var(--yellow-color);
-    border-radius: 0px;
+    border-radius: 10px;
+    margin: 2px;
 }
 
 .edit-button {

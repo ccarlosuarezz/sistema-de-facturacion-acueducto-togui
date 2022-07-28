@@ -1,7 +1,7 @@
 import axios from "axios"
 import { environment } from "../environments/environment"
 
-let financingTypes = {};
+let financingTypes = [];
 
 export const getFinancingTypes = () => new Promise((resolve, reject) => {
     const config = {

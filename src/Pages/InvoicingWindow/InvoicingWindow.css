@@ -1,4 +1,38 @@
 .invoicing {
     width: 85vw;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: auto;
+}
+
+.invoicing-icon {
+    margin-top: 20px;
+}
+
+.invoicing-title {
+    margin: 0;
+    padding: 0;
+    font-size: var(--title-size);
+    margin-bottom: 70px;
+}
+
+.invoicing-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 30px;
+}
+
+.invoicing-buttons > button {
+    width: 280px;
+    padding-inline: 20px;
+    padding-block: 10px;
+}
+
+.disable-button-invicing {
+    opacity: 0.5;
+    cursor: auto;
 }

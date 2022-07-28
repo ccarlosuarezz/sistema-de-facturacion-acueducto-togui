@@ -31,9 +31,9 @@ export function AddPropertyWindow() {
     const [propertyNumberState, setPropertyNumberState] = useState("")
     const [propertyNameState, setPropertyNameState] = useState("")
     const [economicDestinationState, setEconomicDestinationState] = useState(economicDestinationList[0])
-    const [departmentState, setDepartmentState] = useState(departmentList[1].nombre_lugar)
-    const [municipalityState, setMunicipalityState] = useState(municipalityList[0].nombre_lugar)
-    const [sidewalkState, setSidewalkState] = useState(sidewalkList[0].id_lugar+','+sidewalkList[0].nombre_lugar)
+    const [departmentState, setDepartmentState] = useState(departmentList.length > 0 ? departmentList[1].nombre_lugar: '')
+    const [municipalityState, setMunicipalityState] = useState(municipalityList.length > 0 ? municipalityList[0].nombre_lugar: '')
+    const [sidewalkState, setSidewalkState] = useState(sidewalkList.length > 0 ? sidewalkList[0].id_lugar+','+sidewalkList[0].nombre_lugar: '')
     const [propertyAreaState, setPropertyAreaState] = useState("")
     const [builtAreaState, setBuiltAreaState] = useState("")
 
@@ -96,8 +96,8 @@ export function AddPropertyWindow() {
         <div className="enrollment-property">
             <input type="image" src={backIcon} width={40} onClick={handleClickProperties} className="button-back"/>
             <img src={addPropertyIcon} height={100} className="add-enrollment-icon"/>
-            <p>Nuevo predio</p>
-            <div className="enrollment-property-form">
+            <p className="new-property-title">Nuevo predio</p>
+            <div className="enrollment-property-info-form">
                 <div>
                     <p>Número predial *</p>
                     <input type="number"

@@ -82,7 +82,13 @@ export function SubscriberWindow() {
                                     <td>{enrollment.estado_matricula}</td>
                                     <td>{enrollment.nombre_servicio}</td>
                                     <td>{enrollment.nombre_predio}</td>
-                                    <td><button onClick={handleClickEnrollment(enrollment.id_matricula)} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
+                                    <td>
+                                        <button
+                                        onClick={handleClickEnrollment(enrollment.id_matricula)}
+                                        className="show-enrollment">
+                                            <img src={viewIcon} width={30}/>
+                                        </button>
+                                    </td>
                                 </tr>
                             )
                         }):

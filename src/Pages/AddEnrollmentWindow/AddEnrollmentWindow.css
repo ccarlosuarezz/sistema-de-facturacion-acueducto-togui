@@ -61,6 +61,18 @@
     padding-block: 5px;
 }
 
+.type-payment {
+    width: 200px;
+}
+
+.payment {
+    width: 300px;
+}
+
+.quantity {
+    width: 70px;
+}
+
 .input-info-enrollment-financing-2 {
     width: 80px;
     border: solid 2px;

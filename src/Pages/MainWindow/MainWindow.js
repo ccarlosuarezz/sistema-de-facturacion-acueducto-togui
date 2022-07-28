@@ -13,7 +13,7 @@ import EnrollmentsWindow from "../EnrollmentsWindow/EnrollmentsWindow";
 import { EnrollmentWindow } from "../EnrollmentWindow/EnrollmentWindow";
 import { AddEnrollmentWindow } from "../AddEnrollmentWindow/AddEnrollmentWindow";
 import { EditEnrollmentWindow } from "../EditEnrollmentWindow/EditEnrollmentWindow";
-import InvoicingWindow from "../InvoicingWindow/InvoicingWindow"
+import { InvoicingWindow } from "../InvoicingWindow/InvoicingWindow"
 import NotFoundWindow from "../NotFoundWindow/NotFoundWindow";
 import './MainWindow.css';
 import { CheckPaymentsWindow } from "../CheckPaymentsWindow/CheckPaymentsWindow";

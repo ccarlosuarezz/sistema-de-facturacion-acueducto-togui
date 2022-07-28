@@ -19,7 +19,7 @@ export function AddSubscriberWindow() {
     const [modalErrorState, changeModalErrorState] = useState(false);
     const [modalExistState, changeModalExistState] = useState(false);
 
-    const [documentTypeState, setDocumentTypeState] = useState(documentTypes[0].id_tipo_de_documento)
+    const [documentTypeState, setDocumentTypeState] = useState(documentTypes.length > 0 ? documentTypes[0].id_tipo_de_documento: '')
     const [documentNumberState, setDocumentNumberState] = useState("")
     const [firstNameState, setFirstNameState] = useState("")
     const [secondNameState, setSecondNameState] = useState("")

@@ -17,22 +17,22 @@
     margin-top: 20px;
 }
 
-.enrollment-property > p {
+.new-property-title {
     margin: 0;
     font-size: var(--title-size);
     font-weight: bold;
 }
 
-.enrollment-property-form {
+.enrollment-property-info-form {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     column-gap: 50px;
-    padding: 10px;
+    padding: 20px;
 }
 
-.enrollment-property-form > div > p {
+.enrollment-property-info-form > div > p {
     margin: 0;
     padding: 0;
     font-size: var(--text-form-size);

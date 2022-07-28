@@ -20,7 +20,6 @@ let watermeterRegisterOptions = [
 export function AddEnrollmentWindow() {
 
     serviceTypeList = getServiceTypesValues()
-    console.log(serviceTypeList)
     financingList = getFinancingTypesValues()
 
     const [modalState, changeModalState] = useState(false);
@@ -31,10 +30,10 @@ export function AddEnrollmentWindow() {
 
     const [asociatedSubscriberState, setAsociatedSubscriberState] = useState("");
     const [asociatedPropertyState, setAsociatedPropertyState] = useState("");
-    const [serviceTypeState, setServiceTypeState] = useState(serviceTypeList[0].id_tipo_de_servicio);
-    const [financingValueState, setFinancingValueState] = useState(financingList[0].valor_financiacion);
-    const [financingInterestState, setFinancingInterestState] = useState(financingList[0].porcentaje_interes);
-    const [financingFeeState, setFinancingFeeState] = useState(financingList[0].id_financiacion);
+    const [serviceTypeState, setServiceTypeState] = useState(serviceTypeList.length > 0 ? serviceTypeList[0].id_tipo_de_servicio: '');
+    const [financingValueState, setFinancingValueState] = useState(financingList.length > 0 ? financingList[0].valor_financiacion: '');
+    const [financingInterestState, setFinancingInterestState] = useState(financingList.length > 0 ? financingList[0].porcentaje_interes: '');
+    const [financingFeeState, setFinancingFeeState] = useState(financingList.length > 0 ? financingList[0].id_financiacion: '');
     const [watermeterState, setWatermeterState] = useState(watermeterRegisterOptions[0].state);
     const [brandWatermeterState, setBrandWatermeterState] = useState("");
     const [calibrationPercentageWatermeterState, setCalibrationPercentageWatermeterState] = useState("");
@@ -85,7 +84,7 @@ export function AddEnrollmentWindow() {
                             console.log(errEnrollment.response.data.error.fields[0])
                             if (errEnrollment.response.data.error.fields[0] === "id_numero_predial") {
                                 changeModalErrorIdPropertyState(!modalErrorIdPropertyState)
-                            } else if (err.response.data.error.fields[0] === "id_suscriptor") {
+                            } else if (errEnrollment.response.data.error.fields[0] === "id_suscriptor") {
                                 changeModalErrorIdSubscriberState(!modalErrorIdSubscriberState)
                             } else {
                                 changeModalErrorState(!modalErrorState)
@@ -190,7 +189,7 @@ export function AddEnrollmentWindow() {
                                 <select
                                     className="input-info-enrollment-financing-2"
                                     value={financingFeeState}
-                                    onChange={(e) => {setFinancingFeeState(e.target.value);console.log(e.target.value)}}
+                                    onChange={(e) => setFinancingFeeState(e.target.value)}
                                 >
                                     {financingList.map(financing => {
                                         return(

@@ -1,0 +1,159 @@
+.register-penalties {
+    width: 85vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: auto;
+}
+
+.penalty-icon {
+    margin-top: 20px;
+}
+
+.check-charge-title {
+    margin: 0;
+    padding: 0;
+    font-size: var(--title-small-size);
+    margin-bottom: 10px;
+}
+
+.penalty-title {
+    margin: 0;
+    padding: 0;
+    font-size: var(--text-size);
+}
+
+.register-new-penalties, .enrollment-and-type-payment, .payment-and-quantity, .enrollment-penalty {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.register-new-penalties {
+    margin: 10px;
+    column-gap: 50px;
+}
+
+.register-new-penalties p {
+    margin: 0;
+    padding: 0;
+    font-size: var(--text-form-size);
+}
+
+.penalty-inputs, .table-penalties {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.penalty-inputs {
+    row-gap: 10px;
+}
+
+.select-payments {
+    border: solid 2px;
+    border-radius: 10px;
+    padding-inline: 10px;
+    padding-block: 5px;
+    font-size: var(--text-size);
+}
+
+.enrollment-number-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 100px;
+    height: 40px;
+    background-color: var(--dark-color);
+    font-size: var(--text-size);
+}
+
+.observations {
+    width: 400px;
+    height: 70px;
+    border: solid 2px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: var(--text-form-size);
+    font-family: var(--font-family);
+}
+
+.table-penalties > table{
+    display: block;
+    width: 500px;
+    height: 310px;
+    max-height: 310px;
+    overflow-y: auto;
+    border-collapse:separate;
+    border-spacing: 0;
+    border:solid var(--green-color) 1px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    font-size: var(--text-form-size);
+    margin-bottom: 20px;
+    background-color: var(--green-opaque-color-10);
+}
+
+.table-penalties th, .table-penalties td {
+    border-left:solid var(--green-color) 2px;
+    border-bottom:solid var(--green-color) 2px;
+    padding-inline: 20px;
+    padding-block: 5px;
+    text-align: center;
+}
+
+.table-penalties td:first-child, .table-penalties th:first-child {
+    border-left: none;
+}
+
+.table-penalties thead {
+    background-color: var(--green-opaque-color-80);
+    border-top: none;
+    color: var(--black-color);
+}
+
+.table-penalties td {
+    margin: 0;
+    padding: 0;
+    padding-inline: 10px;
+}
+
+.table-penalties tbody tr td {
+    background-color: var(--green-opaque-color-10);
+}
+
+.table-penalties thead th:first-child {
+    border-top-left-radius: 9px;
+}
+
+.table-penalties thead th:last-child {
+    border-top-right-radius: 9px;
+}
+
+.table-penalties tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 9px;
+}
+
+.table-penalties tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 9px;
+}
+
+.row-subscriber {
+    width: 200px;
+}
+
+.show-penalty-details {
+    background-color: var(--yellow);
+    margin-block: 2px;
+    padding-inline: 5px;
+}
+
+.penalty-buttons {
+    padding-block: 10px;
+    padding-inline: 20px;
+}

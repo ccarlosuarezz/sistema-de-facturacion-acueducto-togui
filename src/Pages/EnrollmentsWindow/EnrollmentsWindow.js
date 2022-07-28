@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./EnrollmentsWindow.css"
 import enrollmentsIcon from "../../assets/images/enrollment.svg"
-import searchIcon from "../../assets/images/search.svg"
+import { ReactComponent as SearchIcon } from "../../assets/images/search.svg"
 import warningIcon from "../../assets/images/warning.svg"
 import { ReactComponent as AddEnrollmentIcon } from "../../assets/images/addEnrollment.svg"
 import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
@@ -61,9 +61,14 @@ const EnrollmentsWindow = () => {
             <p className="enrollments-title"><b>Matrículas</b></p>
             <div className="form-search-enrollment">
                 <div className="search-enrollment">
-                    <input type="number" placeholder="N° de matrícula" className="input-id-enrollment" value={idEnrollment} onChange={(e) => setIdEnrollment(e.target.value)}/>
+                    <input
+                        type="number"
+                        placeholder="N° de matrícula"
+                        className="input-id-enrollment"
+                        value={idEnrollment} onChange={(e) => setIdEnrollment(e.target.value)}
+                    />
                     <button onClick={handleClickSearchEnrollment} className="button-search">
-                        <img src={searchIcon} width={30}/>
+                        <SearchIcon width={30} height={30} fill={defaultIconsColor}/>
                     </button>
                 </div>
                 <button onClick={handleClickAddEnrollment} className="button-register-enrollment">

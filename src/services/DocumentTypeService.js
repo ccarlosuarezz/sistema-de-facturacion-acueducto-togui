@@ -1,7 +1,7 @@
 import axios from "axios"
 import { environment } from "../environments/environment"
 
-let documentTypes = {};
+let documentTypes = [];
 
 export const getDocumentType = () => new Promise((resolve, reject) => {
     const config = {

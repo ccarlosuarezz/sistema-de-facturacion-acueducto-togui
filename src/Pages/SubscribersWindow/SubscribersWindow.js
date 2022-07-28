@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./SubscribersWindow.css"
 import subscribersIcon from "../../assets/images/subscribers.svg"
-import searchIcon from "../../assets/images/search.svg"
+import { ReactComponent as SearchIcon } from "../../assets/images/search.svg"
 import warningIcon from "../../assets/images/warning.svg"
 import { ReactComponent as AddSubscriberIcon } from "../../assets/images/addSubscriber.svg"
 import { getSubscriberByID } from "../../services/SubscribersService"
@@ -54,7 +54,7 @@ const SubscribersWindow = () => {
                 <div className="search-subscriber">
                     <input type="number" placeholder="N° de documento del suscriptor" className="input-id-subscriber" value={idSubscriber} onChange={(e) => setIdSubscriber(e.target.value)}/>
                     <button onClick={handleClickSearchSubscriber} className="button-search">
-                        <img src={searchIcon} width={30}/>
+                        <SearchIcon width={30} height={30} fill={defaultIconsColor}/>
                     </button>
                 </div>
                 <button onClick={handleClickAddSubscriber} className="button-register-new-subscriber">

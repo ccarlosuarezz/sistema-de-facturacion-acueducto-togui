@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./PropertiesWindow.css"
 import propertyIcon from "../../assets/images/property.svg"
-import searchIcon from "../../assets/images/search.svg"
+import { ReactComponent as SearchIcon } from "../../assets/images/search.svg"
 import warningIcon from "../../assets/images/warning.svg"
 import { ReactComponent as AddPropertyIcon } from "../../assets/images/addProperty.svg"
 import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
@@ -63,7 +63,7 @@ export function PropertiesWindow() {
                 <div className="search-enrollment">
                     <input type="number" placeholder="N° de predio" className="input-id-enrollment" value={idProperty} onChange={(e) => setIdProperty(e.target.value)}/>
                     <button onClick={handleClickSearchProperty} className="button-search">
-                        <img src={searchIcon} width={30}/>
+                        <SearchIcon width={30} height={30} fill={defaultIconsColor}/>
                     </button>
                 </div>
                 <button onClick={handleClickAddProperty} className="button-register-properties">

@@ -81,3 +81,20 @@ export const editEnrollment = (enrollmentEdited) => new Promise((resolve, reject
         reject(err)
     })
 })
+
+export const getEnrollmentsBySimilarId = (idEnrollment) => new Promise((resolve, reject) => {
+    const config = {
+        headers: {
+            token: sessionStorage.getItem('token')
+        }
+    }
+    axios.get(environment.APIHost+'/getEnrollmentByID/'+idEnrollment, config)
+    .then(res => {
+        if (res.data.ok) {
+            resolve(res.data.result)
+        }
+    })
+    .catch(err => {
+        reject(err)
+    })
+})
