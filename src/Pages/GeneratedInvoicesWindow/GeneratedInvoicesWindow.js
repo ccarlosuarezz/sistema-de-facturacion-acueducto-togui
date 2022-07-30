@@ -1,5 +1,6 @@
 import { useState } from "react";
 import invoicingIcon from "../../assets/images/invoice.svg"
+import ModalInvoicesPDF from "../../components/ModalInvoicesPDF/ModalInvoicesPDF";
 import { getDateActualInvoicePeriod, getGeneratedInvoiceList, getinvoicesLastPeriodList } from "../../services/InvoiceService";
 import "./GeneratedInvoicesWindow.css"
 
@@ -21,6 +22,12 @@ export function GeneratedInvoicesWindow () {
         currency: 'USD',
         minimumFractionDigits: 0
     })
+
+    const [modalPDFstate, setModalPDFstate] = useState(false);
+
+    const handleClickPrintInvoices = () => {
+        setModalPDFstate(!modalPDFstate)
+    }
 
     return (
         <div className="generated-invoices">
@@ -62,7 +69,12 @@ export function GeneratedInvoicesWindow () {
                     </tbody>
                 </table>
             </div>
-            <button className="print-invoices-button">Imprimir</button>
+            <button onClick={handleClickPrintInvoices} className="print-invoices-button">Imprimir</button>
+            <ModalInvoicesPDF
+                state={modalPDFstate}
+                invoiceList={invoiceList}
+                closeFunction={() => setModalPDFstate(!modalPDFstate)}
+            />
         </div>
     )
 }
