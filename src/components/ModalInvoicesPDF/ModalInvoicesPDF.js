@@ -31,11 +31,20 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
+let generatedInvoiceList = []
 
-    let generatedInvoiceList = invoiceList
+export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
+    // console.log(invoiceList)
+    generatedInvoiceList = invoiceList
+    console.log(generatedInvoiceList.length>0?generatedInvoiceList:'No hay facturas')
     // let invoicesQuantity = [1000,2000,3000,4000,5000,6000,7000,8000,9000,10000]
-    let invoicesQuantity = []
+    // let invoicesQuantity = []
+
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0
+    })
 
     return (
         <>
@@ -44,7 +53,7 @@ export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
                     <ModalContainer>
                         <PDFViewer style={{width: "700px", height: "500px"}}>
                             <Document>
-                                {invoicesQuantity.length > 0 ? invoicesQuantity.map(invoice => {
+                                {generatedInvoiceList.length > 0 ? generatedInvoiceList.map(invoice => {
                                     return(
                                         <Page size="A4" style={styles.page}>
                                             <Image
@@ -54,8 +63,42 @@ export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
                                             <Canvas
                                                 paint={painter =>
                                                     painter
-                                                    .text(invoice, 210, 147)
-                                                    .text(invoice, 475, 147)
+                                                    .text(invoice[0].referencia_de_pago, 210, 147)//
+                                                    .text(invoice[0].numero_matricula, 475, 147)//
+                                                    .text(invoice[0].fecha_de_emision, 50, 200)//
+                                                    .text(invoice[0].periodo_facturado, 175, 200)
+                                                    .text(invoice[0].fecha_maxima_de_pago, 460, 200)
+                                                    .text(invoice[0].nombre_suscriptor, 82, 262)
+                                                    .text(invoice[0].direccion, 90, 276)
+                                                    .text(invoice[0].uso, 57, 289)
+                                                    .text(invoice[0].marca_medidor, 85, 359)
+                                                    .text(invoice[0].fecha_de_lectura_anterior !== null? invoice[0].fecha_de_lectura_anterior: '--/--/----', 185, 371)
+                                                    .text(invoice[0].fecha_de_lectura_actual !== null? invoice[0].fecha_de_lectura_actual: '--/--/----', 175, 385)
+                                                    .text(invoice[0].lectura_anterior, 130, 399)
+                                                    .text(invoice[0].lectura_actual, 120, 411)
+                                                    .text(invoice[0].total_metros_facturados, 152, 424)
+                                                    .text(invoice[0].anotaciones !== null? invoice[0].anotaciones: 'Ninguna', 20, 487)
+                                                    .text(formatter.format(invoice[0].consumo), 500, 276)
+                                                    .text(formatter.format(invoice[0].cargo_fijo), 500, 292)
+                                                    .text(formatter.format(invoice[0].costo_de_matricula), 500, 309)
+                                                    .text(formatter.format(invoice[0].sanciones), 500, 325)
+                                                    .text(formatter.format(invoice[0].multas), 500, 341)
+                                                    .text(formatter.format(invoice[0].otros_cobros), 500, 357)
+                                                    .text(formatter.format(invoice[0].deuda_anterior), 500, 374)
+                                                    .text(formatter.format(invoice[0].total), 500, 533)
+                                                    .text(invoice[0].periodo_facturado, 150, 705)
+                                                    .text('falta', 150, 722)// .text(invoice[0].numero_factura, 475, 147)
+                                                    .text(invoice[0].numero_matricula, 150, 739)
+                                                    .text(invoice[0].nombre_suscriptor, 150, 755)
+                                                    .text(invoice[0].direccion, 150, 771)
+                                                    .text(formatter.format(invoice[0].consumo), 510, 705)
+                                                    .text(formatter.format(invoice[0].cargo_fijo), 510, 722)
+                                                    .text(formatter.format(invoice[0].costo_de_matricula), 510, 739)
+                                                    .text(formatter.format(invoice[0].sanciones), 510, 755)
+                                                    .text(formatter.format(invoice[0].multas), 510, 771)
+                                                    .text(formatter.format(invoice[0].otros_cobros), 510, 787)
+                                                    .text(formatter.format(invoice[0].deuda_anterior), 510, 803)
+                                                    .text(formatter.format(invoice[0].total), 510, 820)
                                                 }
                                                 style={styles.canvas}
                                             />

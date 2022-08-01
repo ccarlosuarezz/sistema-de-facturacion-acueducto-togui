@@ -14,7 +14,6 @@ export function GeneratedInvoicesWindow () {
     actualInvoicePeriod = getDateActualInvoicePeriod()
     invoicesLastPeriod = getinvoicesLastPeriodList()
     invoiceList = getGeneratedInvoiceList()
-    console.log(invoiceList)
     totalInvoices = invoiceList.length;
 
     const formatter = new Intl.NumberFormat('en-US', {
