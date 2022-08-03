@@ -147,8 +147,10 @@
     border-bottom-right-radius: 9px;
 }
 
-.show-enrollment {
+.show-property-enrollment {
     background-color: var(--yellow-color);
     border-radius: 10px;
     margin: 2px;
+    padding-inline: 5px;
+    padding-block: 2px;
 }

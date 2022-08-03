@@ -77,7 +77,7 @@ export function CheckPaymentsWindow () {
             <input type="image" src={backIcon} width={40} onClick={handleClickInvoicing} className="button-back"/>
             <img src={invoicingIcon} width={100} className="invoicing-icon"/>
             <p className="check-payments-title"><b>Periodo actual de facturación: {actualInvoicePeriod}</b></p>
-            <p className="table-payments-title"><b>Verificacion de pagos periodo {lastInvoicePeriod}</b></p>
+            <p className="table-payments-title"><b>Verificación de pagos periodo {lastInvoicePeriod}</b></p>
             <div className="table-check-payments">
                 <table>
                     <thead>

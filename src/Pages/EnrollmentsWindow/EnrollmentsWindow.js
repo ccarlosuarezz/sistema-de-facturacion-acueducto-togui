@@ -67,7 +67,7 @@ const EnrollmentsWindow = () => {
                         className="input-id-enrollment"
                         value={idEnrollment} onChange={(e) => setIdEnrollment(e.target.value)}
                     />
-                    <button onClick={handleClickSearchEnrollment} className="button-search">
+                    <button onClick={handleClickSearchEnrollment} className="button-search-enrollments">
                         <SearchIcon width={30} height={30} fill={defaultIconsColor}/>
                     </button>
                 </div>

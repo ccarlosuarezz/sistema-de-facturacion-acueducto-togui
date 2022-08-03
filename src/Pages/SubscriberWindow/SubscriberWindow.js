@@ -2,15 +2,20 @@ import { useNavigate } from "react-router-dom"
 import subscriberIcon from "../../assets/images/subscriber.svg"
 import backIcon from "../../assets/images/back.svg"
 import viewIcon from "../../assets/images/view.svg"
+import warningIcon from "../../assets/images/warning.svg"
 import { getSubscriber } from "../../services/SubscribersService"
 import "./SubscriberWindow.css"
+import { getEnrollmentByID } from "../../services/EnrollmentsService"
+import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
+import { useState } from "react"
 
 let subscriber = {};
 
 export function SubscriberWindow() {
     
     subscriber = getSubscriber();
-    // console.log({subscriber});
+    
+    const [modalNotFoundState, setModalNotFoundState] = useState("")
 
     const navigate =  useNavigate()
 
@@ -23,7 +28,19 @@ export function SubscriberWindow() {
     }
 
     const handleClickEnrollment = (idEnrollment) => {
-        navigate('/admin/matricula/'+idEnrollment)
+        if (idEnrollment) {
+            getEnrollmentByID(idEnrollment)
+            .then(res => {
+                if (res) {
+                    navigate('/admin/matricula/'+idEnrollment)
+                } else {
+                    setModalNotFoundState(!modalNotFoundState)
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
     }
 
     return (
@@ -84,9 +101,9 @@ export function SubscriberWindow() {
                                     <td>{enrollment.nombre_predio}</td>
                                     <td>
                                         <button
-                                        onClick={handleClickEnrollment(enrollment.id_matricula)}
-                                        className="show-enrollment">
-                                            <img src={viewIcon} width={30}/>
+                                        onClick={() => handleClickEnrollment(enrollment.id_matricula)}
+                                        className="show-subscriber-enrollment">
+                                            <img src={viewIcon} height={30}/>
                                         </button>
                                     </td>
                                 </tr>
@@ -104,6 +121,12 @@ export function SubscriberWindow() {
                 </table>
             </div>
             <button onClick={handleClickEditSubscriber} className="edit-button">Editar</button>
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Matricula no encontrada"
+                state={modalNotFoundState}
+                accept={() => setModalNotFoundState(!modalNotFoundState)}
+            />
         </div>
     )
 }

@@ -2,16 +2,22 @@ import { useNavigate } from "react-router-dom"
 import propertyIcon from "../../assets/images/property.svg"
 import backIcon from "../../assets/images/back.svg"
 import viewIcon from "../../assets/images/view.svg"
+import warningIcon from "../../assets/images/warning.svg"
 import "./PropertyWindow.css"
 import { getProperty } from "../../services/PropertiesService"
 import { getEconomicDestination } from "../../services/EconomicDestinationService"
 import { getAddress } from "../../services/AddressService"
+import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
+import { getEnrollmentByID } from "../../services/EnrollmentsService"
+import { useState } from "react"
 
 let property = {};
 
 export function PropertyWindow() {
 
     property = getProperty()
+
+    const [modalNotFoundState, setModalNotFoundState] = useState("")
 
     const navigate =  useNavigate()
 
@@ -40,7 +46,19 @@ export function PropertyWindow() {
     }
 
     const handleClickEnrollment = (idEnrollment) => {
-        navigate('/admin/matricula/'+idEnrollment)
+        if (idEnrollment) {
+            getEnrollmentByID(idEnrollment)
+            .then(res => {
+                if (res) {
+                    navigate('/admin/matricula/'+idEnrollment)
+                } else {
+                    setModalNotFoundState(!modalNotFoundState)
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
     }
 
     return (
@@ -98,7 +116,13 @@ export function PropertyWindow() {
                                     <td>{enrollment.estado_matricula}</td>
                                     <td>{enrollment.nombre_servicio}</td>
                                     <td>{enrollment.nombre_predio}</td>
-                                    <td><button onClick={handleClickEnrollment(enrollment.id_matricula)} className="show-enrollment"><img src={viewIcon} width={30}/></button></td>
+                                    <td>
+                                        <button
+                                        onClick={() => handleClickEnrollment(enrollment.id_matricula)}
+                                        className="show-property-enrollment">
+                                            <img src={viewIcon} height={30}/>
+                                        </button>
+                                        </td>
                                 </tr>
                             )
                         }):
@@ -114,6 +138,12 @@ export function PropertyWindow() {
                 </table>
             </div>
             <button onClick={handleClickEditProperty} className="edit-property-button">Editar</button>
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Matricula no encontrada"
+                state={modalNotFoundState}
+                accept={() => setModalNotFoundState(!modalNotFoundState)}
+            />
         </div>
     )
 }

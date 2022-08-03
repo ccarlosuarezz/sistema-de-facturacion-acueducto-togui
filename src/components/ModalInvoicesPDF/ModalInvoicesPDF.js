@@ -34,11 +34,7 @@ const styles = StyleSheet.create({
 let generatedInvoiceList = []
 
 export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
-    // console.log(invoiceList)
     generatedInvoiceList = invoiceList
-    console.log(generatedInvoiceList.length>0?generatedInvoiceList:'No hay facturas')
-    // let invoicesQuantity = [1000,2000,3000,4000,5000,6000,7000,8000,9000,10000]
-    // let invoicesQuantity = []
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',

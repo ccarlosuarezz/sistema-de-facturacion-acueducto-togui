@@ -43,11 +43,12 @@ export function ModalSearchEnrollment({state, closeFunction, selectEnrollmentFun
                 <Overlay>
                     <ModalContainer>
                     <input
-                    type="image"
-                    src={closeIcon}
-                    width={30}
-                    onClick={() => {closeFunction();  enrollmentListFound = []; setEnrollmentListFoundState(enrollmentListFound); setNumberEnrollmentState("")}}
-                    className="button-back"/>
+                        type="image"
+                        src={closeIcon}
+                        width={30}
+                        onClick={() => {closeFunction();  enrollmentListFound = []; setEnrollmentListFoundState(enrollmentListFound); setNumberEnrollmentState("")}}
+                        className="button-back"
+                    />
                         <img src={enrollmentsIcon} height={100}/>
                         <p className="search-enrollment-title">Buscar Matricula</p>
                         <div className="search-bar">
@@ -57,7 +58,7 @@ export function ModalSearchEnrollment({state, closeFunction, selectEnrollmentFun
                                 value={numberEnrollmentState}
                                 onChange={(e) => setNumberEnrollmentState(e.target.value)}
                             />
-                            <button onClick={handleClickSearchEnrollment} className="button-search">
+                            <button onClick={handleClickSearchEnrollment} className="button-search-enrollment-for-add-penalty">
                                 <SearchIcon width={25} height={25} fill={defaultIconsColor}/>
                             </button>
                         </div>

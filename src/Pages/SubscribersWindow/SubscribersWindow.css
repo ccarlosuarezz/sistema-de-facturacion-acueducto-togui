@@ -43,9 +43,9 @@
     padding: 10px;
 }
 
-.button-search {
+.button-search-subscribers {
     padding-block: 5px;
-    padding-inline: 7px;
+    padding-inline: 5px;
     margin: 0;
     background-color: var(--green-color);
 }

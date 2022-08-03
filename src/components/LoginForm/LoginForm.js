@@ -5,6 +5,7 @@ import { environment } from "../../environments/environment"
 import userIcon from "../../assets/images/user.svg"
 import passwordIcon from "../../assets/images/password.svg"
 import hideIcon from "../../assets/images/hide.svg"
+import viewIcon from "../../assets/images/view.svg"
 import "./LoginForm.css"
 
 const LoginForm = ({forgotPassword}) => {
@@ -14,6 +15,7 @@ const LoginForm = ({forgotPassword}) => {
     const [loginUser, setLoginUser] = useState("")
     const [loginPassword, setLoginPassword] = useState("")
     const [invalidAuth, setinvalidAuth] = useState("")
+    const [showPasswordState, setShowPasswordState] = useState(false);
 
     const handleSubmitLogin = (e) => {
         e.preventDefault();
@@ -37,8 +39,6 @@ const LoginForm = ({forgotPassword}) => {
         }).catch(err => {
             console.log(err)
         })
-
-        // Login(loginUser, loginPassword)
     }
 
     return (
@@ -48,13 +48,15 @@ const LoginForm = ({forgotPassword}) => {
                 <p className="auth-error-message">Usuario o contraseña incorrecta</p>
             }
             <div className="input-login">
-                <img src={userIcon} stroke="black" width={30}></img>
+                <img src={userIcon} width={30}></img>
                 <input type="text" placeholder="Usuario" className="input-user" value={loginUser} onChange={(e) => setLoginUser(e.target.value)}/>
             </div>
             <div className="input-login">
                 <img src={passwordIcon} width={30}></img>
-                <input type="password" placeholder="Contraseña" className="input-password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)}/>
-                <img src={hideIcon} width={30}></img>
+                <input type={showPasswordState ? "text" : "password"} placeholder="Contraseña" className="input-password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)}/>
+                <button className="show-hide-button" onClick={() => setShowPasswordState(!showPasswordState)}>
+                    <img src={showPasswordState ? hideIcon : viewIcon} width={30}></img>
+                </button>
             </div>
             <button className="button-login" onClick={handleSubmitLogin}><b>Ingresar</b></button>
             <a onClick={forgotPassword}>Olvidé mi contraseña</a>

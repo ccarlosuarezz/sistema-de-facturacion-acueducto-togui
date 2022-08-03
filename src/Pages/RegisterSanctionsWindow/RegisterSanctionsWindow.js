@@ -9,6 +9,7 @@ import { ModalSearchEnrollment } from "../../components/ModalSearchEnrollment/Mo
 import { createNewBillingPeriod, getDateActualInvoicePeriod, getInvoiceLastPeriod, getInvoiceList } from "../../services/InvoiceService";
 import { getPayment, getPaymentList, getPaymentTypesList, registerCharges } from "../../services/PaymentsService";
 import "./RegisterSanctionsWindow.css"
+import { ModalShowPenalty } from "../../components/ModalShowPenalty/ModalShowPenalty";
 const defaultIconsColor = "#FFFFFF"
 
 let actualInvoicePeriod = ""
@@ -33,6 +34,7 @@ export function RegisterSanctionsWindow () {
     const [totalState, setTotalState] = useState(chargeState ? quantityState * chargeState.valor_cobro : 0)
 
     const [penaltyListState, setPenaltyListState] = useState([])
+    const [penaltyToShowState, setPenaltyToShowState] = useState()
 
     const [modalErrorState, changeModalErrorState] = useState(false)
     const [modalAddErrorState, changeModalAddErrorState] = useState(false)
@@ -40,8 +42,15 @@ export function RegisterSanctionsWindow () {
     const [modalErrorGenerateInvoivesState, changeModalErrorGenerateInvoivesState] = useState(false)
     const [modalErrorGenerateBillingPeriodState, changeModalErrorGenerateBillingPeriodState] = useState(false)
     const [modalErrorInvoicesPeriodState, changeModalErrorInvoicesPeriodState] = useState(false)
+    const [modalPenaltyDetailsState, changeModalPenaltyDetailsState] = useState(false)
 
     const navigate =  useNavigate()
+
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0
+    })
 
     const handleClickSelectChargeType = (value) => {
         setChargeTypesState(value)
@@ -66,16 +75,18 @@ export function RegisterSanctionsWindow () {
 
     const handleClickCharge = (value) => {
         let jsonValue = JSON.parse(value)
-        setChargeState(value)
+        setChargeState(jsonValue)
         setTotalState(quantityState * jsonValue.valor_cobro)
     }
 
     const handleClickAddPenalty = () => {
         if (enrollmentState !== '-' && chargeTypesState !== '' && chargeState !== '') {
+            console.log(chargeState)
             const newPenalty = {
                 id_enrollment: enrollmentState.id_enrollment,
                 subscriber: enrollmentState.subscriber,
                 id_charge: chargeState.id_cobro,
+                type_charge: chargeState.concepto_cobro,
                 quantity: quantityState,
                 total_value: totalState,
                 observations: observationsState
@@ -86,10 +97,16 @@ export function RegisterSanctionsWindow () {
         }
     }
 
+    const handleClickShowPenaltyDetails = (penalty) => {
+        setPenaltyToShowState(penalty)
+        changeModalPenaltyDetailsState(!modalPenaltyDetailsState)
+    }
+
     const handleClickGenerateInvoices = () => {
         const chargeList = {
             charge_list: penaltyListState
         }
+        console.log('tome..', chargeList)
         registerCharges(chargeList)
         .then(res => {
             if (res.data.ok) {
@@ -141,8 +158,8 @@ export function RegisterSanctionsWindow () {
                             <p>Número de matricula</p>
                             <div className="enrollment-penalty">
                                 <p className="enrollment-number-payment">{enrollmentState.id_enrollment ? enrollmentState.id_enrollment: '-'}</p>
-                                <button onClick={() => setModalSearchEnrollmentState(!modalSearchEnrollmentState)} className="button-search">
-                                    <SearchIcon width={30} height={30} fill={defaultIconsColor}/>
+                                <button onClick={() => setModalSearchEnrollmentState(!modalSearchEnrollmentState)} className="button-search-enrollments-for-penalty">
+                                    <SearchIcon width={25} height={25} fill={defaultIconsColor}/>
                                 </button>
                             </div>
                         </div>
@@ -205,7 +222,7 @@ export function RegisterSanctionsWindow () {
                     </div>
                     <div>
                         <p><b>Total</b></p>
-                        <p>$ {totalState}</p>
+                        <p>{formatter.format(totalState)}</p>
                     </div>
                     <button
                     className="penalty-buttons"
@@ -229,10 +246,12 @@ export function RegisterSanctionsWindow () {
                                         <tr key={penalty.id_enrollment}>
                                             <td>{penalty.id_enrollment}</td>
                                             <td>{penalty.subscriber}</td>
-                                            <td>{penalty.total_value}</td>
+                                            <td>{formatter.format(penalty.total_value)}</td>
                                             <td>
                                                 <button
-                                                className="show-penalty-details">
+                                                    className="show-penalty-details"
+                                                    onClick={() => handleClickShowPenaltyDetails(penalty)}
+                                                >
                                                     <img src={viewIcon} width={30}/>
                                                 </button>
                                             </td>
@@ -292,6 +311,11 @@ export function RegisterSanctionsWindow () {
                 title="Error al crear obtener facturas creadas"
                 state={modalErrorInvoicesPeriodState}
                 accept={() => changeModalErrorInvoicesPeriodState(!modalErrorInvoicesPeriodState)}
+            />
+            <ModalShowPenalty
+                state={modalPenaltyDetailsState}
+                penalty={penaltyToShowState}
+                closeFunction={() => changeModalPenaltyDetailsState(!modalPenaltyDetailsState)}
             />
         </div>
     )

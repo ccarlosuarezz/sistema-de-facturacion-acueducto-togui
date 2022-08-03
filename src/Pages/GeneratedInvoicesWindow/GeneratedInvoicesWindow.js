@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import invoicingIcon from "../../assets/images/invoice.svg"
 import ModalInvoicesPDF from "../../components/ModalInvoicesPDF/ModalInvoicesPDF";
 import { getDateActualInvoicePeriod, getGeneratedInvoiceList, getinvoicesLastPeriodList } from "../../services/InvoiceService";
@@ -24,8 +25,19 @@ export function GeneratedInvoicesWindow () {
 
     const [modalPDFstate, setModalPDFstate] = useState(false);
 
+    const navigate =  useNavigate()
+
     const handleClickPrintInvoices = () => {
         setModalPDFstate(!modalPDFstate)
+    }
+
+    const handleClickInvoicingFinish = () => {
+        setModalPDFstate(!modalPDFstate)
+        invoiceList = []
+        invoicesLastPeriod = []
+        totalInvoices = 0
+        actualInvoicePeriod = ''
+        navigate('/admin/facturacion')
     }
 
     return (
@@ -72,7 +84,7 @@ export function GeneratedInvoicesWindow () {
             <ModalInvoicesPDF
                 state={modalPDFstate}
                 invoiceList={invoiceList}
-                closeFunction={() => setModalPDFstate(!modalPDFstate)}
+                closeFunction={handleClickInvoicingFinish}
             />
         </div>
     )

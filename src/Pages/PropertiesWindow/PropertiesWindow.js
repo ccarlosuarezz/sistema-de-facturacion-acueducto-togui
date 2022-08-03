@@ -62,7 +62,7 @@ export function PropertiesWindow() {
             <div className="form-search-enrollment">
                 <div className="search-enrollment">
                     <input type="number" placeholder="N° de predio" className="input-id-enrollment" value={idProperty} onChange={(e) => setIdProperty(e.target.value)}/>
-                    <button onClick={handleClickSearchProperty} className="button-search">
+                    <button onClick={handleClickSearchProperty} className="button-search-properties">
                         <SearchIcon width={30} height={30} fill={defaultIconsColor}/>
                     </button>
                 </div>

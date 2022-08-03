@@ -53,7 +53,7 @@ const SubscribersWindow = () => {
             <div className="form-search-subscriber">
                 <div className="search-subscriber">
                     <input type="number" placeholder="N° de documento del suscriptor" className="input-id-subscriber" value={idSubscriber} onChange={(e) => setIdSubscriber(e.target.value)}/>
-                    <button onClick={handleClickSearchSubscriber} className="button-search">
+                    <button onClick={handleClickSearchSubscriber} className="button-search-subscribers">
                         <SearchIcon width={30} height={30} fill={defaultIconsColor}/>
                     </button>
                 </div>
