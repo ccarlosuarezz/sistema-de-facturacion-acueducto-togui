@@ -131,15 +131,15 @@ export function AddSubscriberWindow() {
                     <input className="input-info-subscriber" type="date" value={birthdayState} onChange={(e) => setBirthdayState(e.target.value)}/>
                 </div>
                 <div>
-                    <p>Direccion *</p>
+                    <p>Dirección *</p>
                     <input className="input-info-subscriber" type="text" value={addressState} onChange={(e) => setAddressState(e.target.value)}/>
                 </div>
                 <div>
-                    <p>Correo electronico</p>
+                    <p>Correo electrónico</p>
                     <input className="input-info-subscriber" type="text" value={mailState} onChange={(e) => setMailState(e.target.value)}/>
                 </div>
                 <div>
-                    <p>Telefono</p>
+                    <p>Teléfono</p>
                     <input className="input-info-subscriber" type="number" value={phoneState} onChange={(e) => setPhoneState(e.target.value)}/>
                 </div>
             </div>

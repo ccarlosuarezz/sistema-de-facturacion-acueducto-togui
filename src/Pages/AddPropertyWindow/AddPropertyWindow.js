@@ -186,7 +186,7 @@ export function AddPropertyWindow() {
             </div>
             <div className="propery-area-container">
                 <div>
-                    <p>Area del predio (m<sup>2</sup>) *</p>
+                    <p>Área del predio (m<sup>2</sup>) *</p>
                     <input type="number"
                         className="input-area-property"
                         value={propertyAreaState}
@@ -194,7 +194,7 @@ export function AddPropertyWindow() {
                     />
                 </div>
                 <div>
-                    <p>Area construida (m<sup>2</sup>) *</p>
+                    <p>Área construida (m<sup>2</sup>) *</p>
                     <input type="number"
                         className="input-area-property"
                         value={builtAreaState}

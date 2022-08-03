@@ -82,7 +82,7 @@ export function EnrollmentWindow() {
                                     <td>{enrollment.medidores.marca_medidor}</td>
                                 </tr>
                                 <tr>
-                                    <td>Porcentaje de caliración</td>
+                                    <td>Porcentaje de calibración</td>
                                     <td>{enrollment.medidores.porcentaje_calibracion}%</td>
                                 </tr>
                                 <tr>

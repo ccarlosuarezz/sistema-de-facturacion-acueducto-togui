@@ -69,22 +69,22 @@ export function SubscriberWindow() {
                             <td>{subscriber.fecha_nacimiento_suscriptor}</td>
                         </tr>
                         <tr>
-                            <td>Telefono</td>
+                            <td>Teléfono</td>
                             <td>{subscriber.telefono_suscriptor}</td>
                         </tr>
                         <tr>
-                            <td>Correo electronico</td>
+                            <td>Correo electrónico</td>
                             <td>{subscriber.correo_electronico_suscriptor}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div className="table-enrollments">
-                <p>Matriculas</p>
+                <p>Matrículas</p>
                 <table>
                     <thead>
                         <tr>
-                            <th>N° de matricula</th>
+                            <th>N° de matrícula</th>
                             <th>Estado</th>
                             <th>Tipo de servicio</th>
                             <th>Nombre del predio</th>

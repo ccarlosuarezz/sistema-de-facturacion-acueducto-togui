@@ -81,7 +81,6 @@ export function RegisterSanctionsWindow () {
 
     const handleClickAddPenalty = () => {
         if (enrollmentState !== '-' && chargeTypesState !== '' && chargeState !== '') {
-            console.log(chargeState)
             const newPenalty = {
                 id_enrollment: enrollmentState.id_enrollment,
                 subscriber: enrollmentState.subscriber,
@@ -106,7 +105,6 @@ export function RegisterSanctionsWindow () {
         const chargeList = {
             charge_list: penaltyListState
         }
-        console.log('tome..', chargeList)
         registerCharges(chargeList)
         .then(res => {
             if (res.data.ok) {
@@ -155,7 +153,7 @@ export function RegisterSanctionsWindow () {
                 <div className="penalty-inputs">
                     <div className="enrollment-and-type-payment">
                         <div>
-                            <p>Número de matricula</p>
+                            <p>Número de matrícula</p>
                             <div className="enrollment-penalty">
                                 <p className="enrollment-number-payment">{enrollmentState.id_enrollment ? enrollmentState.id_enrollment: '-'}</p>
                                 <button onClick={() => setModalSearchEnrollmentState(!modalSearchEnrollmentState)} className="button-search-enrollments-for-penalty">
@@ -234,7 +232,7 @@ export function RegisterSanctionsWindow () {
                     <table>
                         <thead>
                             <tr>
-                                <th>Matricula</th>
+                                <th>    Matrícula</th>
                                 <th className="row-subscriber">Suscriptor</th>
                                 <th>Valor</th>
                                 <th>Ver</th>

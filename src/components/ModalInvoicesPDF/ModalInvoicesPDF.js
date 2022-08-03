@@ -36,6 +36,8 @@ let generatedInvoiceList = []
 export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
     generatedInvoiceList = invoiceList
 
+    console.log(invoiceList)
+
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -56,13 +58,31 @@ export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
                                                 src={invoiceModelImage}
                                                 style={styles.image}
                                             />
+                                            {invoice[0].anotaciones.length > 0 ? invoice[0].anotaciones.map((annotation, index) => {
+                                                return(
+                                                    <Canvas
+                                                        paint={painter =>
+                                                            painter.text(annotation.concepto, 20, (487+index*15))
+                                                        }
+                                                        style={styles.canvas}
+                                                    />
+                                                )
+                                                })
+                                                :
+                                                <Canvas
+                                                    paint={painter =>
+                                                        painter.text('Ninguna', 20, 487)
+                                                    }
+                                                    style={styles.canvas}
+                                                />
+                                            }
                                             <Canvas
                                                 paint={painter =>
                                                     painter
-                                                    .text(invoice[0].referencia_de_pago, 210, 147)//
-                                                    .text(invoice[0].numero_matricula, 475, 147)//
-                                                    .text(invoice[0].fecha_de_emision, 50, 200)//
-                                                    .text(invoice[0].periodo_facturado, 175, 200)
+                                                    .text(invoice[0].referencia_de_pago, 210, 147)
+                                                    .text(invoice[0].numero_matricula, 475, 147)
+                                                    .text(invoice[0].fecha_de_emision, 50, 200)
+                                                    .text(invoice[0].periodo_facturado, 190, 200)
                                                     .text(invoice[0].fecha_maxima_de_pago, 460, 200)
                                                     .text(invoice[0].nombre_suscriptor, 82, 262)
                                                     .text(invoice[0].direccion, 90, 276)
@@ -73,7 +93,7 @@ export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
                                                     .text(invoice[0].lectura_anterior, 130, 399)
                                                     .text(invoice[0].lectura_actual, 120, 411)
                                                     .text(invoice[0].total_metros_facturados, 152, 424)
-                                                    .text(invoice[0].anotaciones !== null? invoice[0].anotaciones: 'Ninguna', 20, 487)
+                                                    // .text(invoice[0].anotaciones !== null? invoice[0].anotaciones: 'Ninguna', 20, 487)
                                                     .text(formatter.format(invoice[0].consumo), 500, 276)
                                                     .text(formatter.format(invoice[0].cargo_fijo), 500, 292)
                                                     .text(formatter.format(invoice[0].costo_de_matricula), 500, 309)
@@ -82,8 +102,9 @@ export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
                                                     .text(formatter.format(invoice[0].otros_cobros), 500, 357)
                                                     .text(formatter.format(invoice[0].deuda_anterior), 500, 374)
                                                     .text(formatter.format(invoice[0].total), 500, 533)
+                                                    //Colilla
                                                     .text(invoice[0].periodo_facturado, 150, 705)
-                                                    .text('falta', 150, 722)// .text(invoice[0].numero_factura, 475, 147)
+                                                    .text(invoice[0].numero_factura, 150, 722)
                                                     .text(invoice[0].numero_matricula, 150, 739)
                                                     .text(invoice[0].nombre_suscriptor, 150, 755)
                                                     .text(invoice[0].direccion, 150, 771)

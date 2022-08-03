@@ -85,11 +85,11 @@ export function EditSubscriberWindow() {
                     <input type="text" className="input-info-edit-subscriber" value={addressState} onChange={(e) => setAddressState(e.target.value)}/>
                 </div>
                 <div>
-                    <p>Correo electronico</p>
+                    <p>Correo electrónico</p>
                     <input type="text" className="input-info-edit-subscriber" value={emailState} onChange={(e) => setEmailState(e.target.value)}/>
                 </div>
                 <div>
-                    <p>Telefono</p>
+                    <p>Teléfono</p>
                     <input type="number" className="input-info-edit-subscriber" value={phoneState} onChange={(e) => setPhoneState(e.target.value)}/>
                 </div>
             </div>

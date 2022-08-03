@@ -86,22 +86,22 @@ export function PropertyWindow() {
                             <td>{property.direccion_predio ? property.direccion_predio.direccion: ''}</td>
                         </tr>
                         <tr>
-                            <td>Area del predio</td>
+                            <td>Área del predio</td>
                             <td>{property.area_predio} m<sup>2</sup></td>
                         </tr>
                         <tr>
-                            <td>Area construida</td>
+                            <td>Área construida</td>
                             <td>{property.area_construccion} m<sup>2</sup></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div className="table-enrollments-property">
-                <p>Matriculas</p>
+                <p>Matrículas</p>
                 <table>
                     <thead>
                         <tr>
-                            <th>N° de matricula</th>
+                            <th>N° de matrícula</th>
                             <th>Estado</th>
                             <th>Tipo de servicio</th>
                             <th>Nombre del predio</th>

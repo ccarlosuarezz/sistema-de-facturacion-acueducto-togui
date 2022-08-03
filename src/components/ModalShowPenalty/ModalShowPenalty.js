@@ -11,8 +11,6 @@ export function ModalShowPenalty({state, penalty, closeFunction}) {
         minimumFractionDigits: 0
     })
 
-    console.log(penalty)
-
     return (
         <>
             {state &&
@@ -26,7 +24,7 @@ export function ModalShowPenalty({state, penalty, closeFunction}) {
                         className="button-back"
                     />
                     <div className="penalty-detail-info">
-                        <p><b>Matricula: </b>{penalty.id_enrollment}</p>
+                        <p><b>Matrícula: </b>{penalty.id_enrollment}</p>
                         <p><b>Suscriptor: </b>{penalty.subscriber}</p>
                         <p><b>Cobro: </b>{penalty.type_charge}</p>
                         <p><b>Cantidad: </b>{penalty.quantity}</p>
