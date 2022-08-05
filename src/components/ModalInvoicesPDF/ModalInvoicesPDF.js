@@ -1,14 +1,18 @@
 import styled from "styled-components"
-import { useNavigate } from "react-router-dom"
-import { Canvas, Document, Image, Page, PDFViewer, StyleSheet, Svg, Text, View } from "@react-pdf/renderer"
-import closeIcon from "../../assets/images/close.svg"
-import appIcon from "../../assets/images/logoApp.svg"
+import { Canvas, Document, Image, Page, PDFViewer, StyleSheet, Text, View } from "@react-pdf/renderer"
 import invoiceModelImage from "../../assets/images/invoiceModel.png"
 import "./ModalInvoicesPDF.css"
 
 const styles = StyleSheet.create({
     page: {
         position: 'relative',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+    },
+    pageTable: {
+        position: 'relative',
+        padding: '20px',
         display: "flex",
         flexDirection: "column",
         alignItems: "center"
@@ -23,7 +27,7 @@ const styles = StyleSheet.create({
     canvas: {
         position: 'absolute',
         left: "0",
-        top: "0",
+        top: "0"
     },
     text: {
         marginTop: "20px",
@@ -33,10 +37,10 @@ const styles = StyleSheet.create({
 
 let generatedInvoiceList = []
 
-export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
+export default function ModalInvoicesPDF({state, invoiceList, closeFunction, backFunction}) {
     generatedInvoiceList = invoiceList
 
-    console.log(invoiceList)
+    console.log(generatedInvoiceList)
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -58,7 +62,7 @@ export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
                                                 src={invoiceModelImage}
                                                 style={styles.image}
                                             />
-                                            {invoice[0].anotaciones.length > 0 ? invoice[0].anotaciones.map((annotation, index) => {
+                                            {invoice[0].anotaciones ? invoice[0].anotaciones.map((annotation, index) => {
                                                 return(
                                                     <Canvas
                                                         paint={painter =>
@@ -93,7 +97,6 @@ export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
                                                     .text(invoice[0].lectura_anterior, 130, 399)
                                                     .text(invoice[0].lectura_actual, 120, 411)
                                                     .text(invoice[0].total_metros_facturados, 152, 424)
-                                                    // .text(invoice[0].anotaciones !== null? invoice[0].anotaciones: 'Ninguna', 20, 487)
                                                     .text(formatter.format(invoice[0].consumo), 500, 276)
                                                     .text(formatter.format(invoice[0].cargo_fijo), 500, 292)
                                                     .text(formatter.format(invoice[0].costo_de_matricula), 500, 309)
@@ -101,7 +104,7 @@ export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
                                                     .text(formatter.format(invoice[0].multas), 500, 341)
                                                     .text(formatter.format(invoice[0].otros_cobros), 500, 357)
                                                     .text(formatter.format(invoice[0].deuda_anterior), 500, 374)
-                                                    .text(formatter.format(invoice[0].total), 500, 533)
+                                                    .text(formatter.format(invoice[0].total), 500, 432)
                                                     //Colilla
                                                     .text(invoice[0].periodo_facturado, 150, 705)
                                                     .text(invoice[0].numero_factura, 150, 722)
@@ -133,7 +136,10 @@ export default function ModalInvoicesPDF({state, invoiceList, closeFunction}) {
                                 }
                             </Document>
                         </PDFViewer>
-                        <button onClick={closeFunction} className="finish-invoicing-button">Terminar</button>
+                        <div className="div-buttons-invoices-pdf">
+                            <button onClick={() => {closeFunction()}} className="finish-invoicing-button">Imprimir planilla</button>
+                            <button onClick={() => {backFunction()}} className="finish-invoicing-button">Atras</button>
+                        </div>
                     </ModalContainer>
                 </Overlay>
             }

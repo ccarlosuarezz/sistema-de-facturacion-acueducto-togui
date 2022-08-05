@@ -28,6 +28,7 @@ export function CheckPaymentsWindow () {
     })
 
     const [modalErrorState, changeModalErrorState] = useState(false);
+    const [modalAlertState, changeModalAlertState] = useState(true);
 
     const navigate =  useNavigate()
 
@@ -127,6 +128,12 @@ export function CheckPaymentsWindow () {
                 title="Error al verificar pagos"
                 state={modalErrorState}
                 accept={() => changeModalErrorState(!modalErrorState)}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Recuerde seleccionar solo las facturas que NO fueron canceladas"
+                state={modalAlertState}
+                accept={() => changeModalAlertState(!modalAlertState)}
             />
         </div>
     )

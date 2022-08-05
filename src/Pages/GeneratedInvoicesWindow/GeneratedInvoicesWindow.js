@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import invoicingIcon from "../../assets/images/invoice.svg"
+import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed";
 import ModalInvoicesPDF from "../../components/ModalInvoicesPDF/ModalInvoicesPDF";
+import ModalPlanillaPDF from "../../components/ModalPlanillaPDF/ModalPlanillaPDF";
 import { getDateActualInvoicePeriod, getGeneratedInvoiceList, getinvoicesLastPeriodList } from "../../services/InvoiceService";
 import "./GeneratedInvoicesWindow.css"
 
@@ -23,16 +25,33 @@ export function GeneratedInvoicesWindow () {
         minimumFractionDigits: 0
     })
 
-    const [modalPDFstate, setModalPDFstate] = useState(false);
+    const [modalPDFInvoiceState, setModalPDFInvoiceState] = useState(false);
+    const [modalPDFPlanillaState, setModalPDFPlanillaState] = useState(false);
+    const [modalSuccesfulState, setModalSuccesfulStateState] = useState(false);
 
     const navigate =  useNavigate()
 
     const handleClickPrintInvoices = () => {
-        setModalPDFstate(!modalPDFstate)
+        setModalPDFInvoiceState(!modalPDFInvoiceState)
+    }
+
+    const handleClickShowPlanilla = () => {
+        setModalPDFInvoiceState(!modalPDFInvoiceState)
+        setModalPDFPlanillaState(!modalPDFPlanillaState)
+    }
+
+    const handleClickBackToInvoicesPDF = () => {
+        setModalPDFPlanillaState(!modalPDFPlanillaState)
+        setModalPDFInvoiceState(!modalPDFInvoiceState)
+    }
+
+    const handleClickSuccesfulInvoicing = () => {
+        setModalPDFPlanillaState(!modalPDFPlanillaState)
+        setModalSuccesfulStateState(!modalSuccesfulState)
     }
 
     const handleClickInvoicingFinish = () => {
-        setModalPDFstate(!modalPDFstate)
+        setModalSuccesfulStateState(!modalSuccesfulState)
         invoiceList = []
         invoicesLastPeriod = []
         totalInvoices = 0
@@ -82,9 +101,22 @@ export function GeneratedInvoicesWindow () {
             </div>
             <button onClick={handleClickPrintInvoices} className="print-invoices-button">Imprimir</button>
             <ModalInvoicesPDF
-                state={modalPDFstate}
+                state={modalPDFInvoiceState}
                 invoiceList={invoiceList}
-                closeFunction={handleClickInvoicingFinish}
+                closeFunction={handleClickShowPlanilla}
+                backFunction={() => {setModalPDFInvoiceState(!modalPDFInvoiceState)}}
+            />
+            <ModalPlanillaPDF
+                state={modalPDFPlanillaState}
+                invoiceList={invoiceList}
+                closeFunction={() => {handleClickSuccesfulInvoicing()}}
+                backFunction={() => {handleClickBackToInvoicesPDF()}}
+            />
+            <ModalActionPerformed
+                img={invoicingIcon}
+                title="Periodo de facturación realizado con éxito"
+                state={modalSuccesfulState}
+                accept={() => {handleClickInvoicingFinish()}}
             />
         </div>
     )

@@ -140,7 +140,14 @@ export function AddSubscriberWindow() {
                 </div>
                 <div>
                     <p>Teléfono</p>
-                    <input className="input-info-subscriber" type="number" value={phoneState} onChange={(e) => setPhoneState(e.target.value)}/>
+                    <input
+                        className="input-info-subscriber"
+                        type="number"
+                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                        required
+                        value={phoneState}
+                        onChange={(e) => setPhoneState(e.target.value)}
+                    />
                 </div>
             </div>
             <button onClick={handleClickAddSubscriber} className="register-button">Registrar</button>

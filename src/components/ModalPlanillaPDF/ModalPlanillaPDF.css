@@ -1,9 +1,4 @@
-.finish-invoicing-button {
-    padding-inline: 20px;
-    padding-block: 10px;
-}
-
-.div-buttons-invoices-pdf {
+.div-buttons-planilla-pdf {
     display: flex;
     flex-direction: row;
     justify-content: center;
