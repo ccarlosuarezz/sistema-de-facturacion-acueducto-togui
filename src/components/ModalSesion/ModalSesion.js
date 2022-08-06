@@ -16,7 +16,7 @@ export function ModalSesion({state, closeFunction}) {
     }
 
     const handleClickSetings = () => {
-        navigate('/configuracion/datos-personales')
+        // navigate('/configuracion/datos-personales')
     }
 
     return (

@@ -27,11 +27,15 @@ export function AddPropertyWindow() {
     const [modalwarningState, changeModalWarningState] = useState(false);
     const [modalErrorState, changeModalErrorState] = useState(false);
     const [modalExistState, changeModalExistState] = useState(false);
+    const [modalPropertyNumberErrorState, changeModalPropertyNumberErrorState] = useState(false);
+    const [modalPropertyNameErrorState, changeModalPropertyNameErrorState] = useState(false);
+    const [modalPropertyAreaErrorState, changeModalPropertyAreaErrorState] = useState(false);
+    const [modalBuiltAreaErrorState, changeModalBuiltAreaErrorState] = useState(false);
 
     const [propertyNumberState, setPropertyNumberState] = useState("")
     const [propertyNameState, setPropertyNameState] = useState("")
     const [economicDestinationState, setEconomicDestinationState] = useState(economicDestinationList[0])
-    const [departmentState, setDepartmentState] = useState(departmentList.length > 0 ? departmentList[1].nombre_lugar: '')
+    const [departmentState, setDepartmentState] = useState(departmentList.length > 0 ? departmentList[0].nombre_lugar: '')
     const [municipalityState, setMunicipalityState] = useState(municipalityList.length > 0 ? municipalityList[0].nombre_lugar: '')
     const [sidewalkState, setSidewalkState] = useState(sidewalkList.length > 0 ? sidewalkList[0].id_lugar+','+sidewalkList[0].nombre_lugar: '')
     const [propertyAreaState, setPropertyAreaState] = useState("")
@@ -47,7 +51,26 @@ export function AddPropertyWindow() {
             propertyAreaState === "" ||
             builtAreaState === "") {
             changeModalWarningState(!modalwarningState)
-        } else {
+        }
+        else if (propertyNumberState < 0 || propertyNumberState.length > 50) {
+            changeModalPropertyNumberErrorState(!modalPropertyNumberErrorState)
+        }
+        else if (propertyNameState.length > 45) {
+            changeModalPropertyNameErrorState(!modalPropertyNameErrorState)
+        }
+        else if (propertyAreaState < 0 || propertyAreaState > 50000) {
+            changeModalPropertyAreaErrorState(!modalPropertyAreaErrorState)
+        }
+        else if (builtAreaState < 0 || builtAreaState > 50000) {
+            changeModalBuiltAreaErrorState(!modalBuiltAreaErrorState)
+        }
+        else if (propertyNumberState !== "" &&
+            propertyNameState !== "" &&
+            departmentState !== "" &
+            municipalityState !== "" &&
+            sidewalkState !== "" &&
+            propertyAreaState !== "" &&
+            builtAreaState !== "") {
             let addressInput = sidewalkState.split(',')
             console.log(sidewalkState)
             const newProperty = {
@@ -60,7 +83,6 @@ export function AddPropertyWindow() {
                 destino_economico_predio: economicDestinationState === "" ? null: economicDestinationState,
                 id_lugar: sidewalkState === "" ? null: addressInput[0],
             };
-            // console.log(newProperty)
             addProperty(newProperty)
             .then(res => {
                 if (res.data.ok) {
@@ -140,14 +162,14 @@ export function AddPropertyWindow() {
                             value={departmentState}
                             onChange={(e) => setDepartmentState(e.target.value)}
                         >
-                            {departmentList.map(department => {
-                                return(
-                                    <option key={department.id_lugar}
-                                        value={department.id_lugar}>
-                                        {department.nombre_lugar}
+                            {/* {departmentList.map(department => {
+                                return( */}
+                                    <option key={departmentList[0].id_lugar}
+                                        value={departmentList[0].id_lugar}>
+                                        {departmentList[0].nombre_lugar}
                                     </option>
-                                )
-                            })}
+                                {/* )
+                            })} */}
                         </select>
                     </div>
                     <div>
@@ -226,6 +248,31 @@ export function AddPropertyWindow() {
                 title="El predio ya existe"
                 state={modalExistState}
                 accept={handleClickAddSubscribersExist}
+            />
+
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Número predial inválido"
+                state={modalPropertyNumberErrorState}
+                accept={() => {changeModalPropertyNumberErrorState(!modalPropertyNumberErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Nombre de predio demasiado largo"
+                state={modalPropertyNameErrorState}
+                accept={() => {changeModalPropertyNameErrorState(!modalPropertyNameErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Área de predio inválida"
+                state={modalPropertyAreaErrorState}
+                accept={() => {changeModalPropertyAreaErrorState(!modalPropertyAreaErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Área construida inválida"
+                state={modalBuiltAreaErrorState}
+                accept={() => {changeModalBuiltAreaErrorState(!modalBuiltAreaErrorState)}}
             />
         </div>
     )

@@ -29,7 +29,7 @@
     justify-content: center;
     align-items: center;
     column-gap: 50px;
-    padding: 20px;
+    padding-top: 20px;
 }
 
 .enrollment-property-info-form > div > p {
@@ -97,7 +97,7 @@
     align-items: center;
     column-gap: 40px;
     padding: 10px;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
 }
 
 .propery-area-container > div > p {

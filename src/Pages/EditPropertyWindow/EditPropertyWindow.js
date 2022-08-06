@@ -19,11 +19,14 @@ export function EditPropertyWindow() {
     const [modalState, changeModalState] = useState(false);
     const [modalWarningState, changeModalWarningState] = useState(false);
     const [modalErrorState, changeModalErrorState] = useState(false);
+    const [modalPropertyNameErrorState, changeModalPropertyNameErrorState] = useState(false);
+    const [modalPropertyAreaErrorState, changeModalPropertyAreaErrorState] = useState(false);
+    const [modalBuiltAreaErrorState, changeModalBuiltAreaErrorState] = useState(false);
 
-    const [propertyNameState, setPropertyNameState] = useState(property.nombre_predio)
-    const [economicDestinationState, setEconomicDestinationState] = useState(property.destino_economico_predio)
-    const [propertyAreaState, setPropertyAreaState] = useState(property.area_predio)
-    const [builtAreaState, setBuiltAreaState] = useState(property.area_construccion)
+    const [propertyNameState, setPropertyNameState] = useState(property.nombre_predio ? property.nombre_predio: '')
+    const [economicDestinationState, setEconomicDestinationState] = useState(property.destino_economico_predio ? property.destino_economico_predio: '')
+    const [propertyAreaState, setPropertyAreaState] = useState(property.area_predio ? property.area_predio: '')
+    const [builtAreaState, setBuiltAreaState] = useState(property.area_construccion ? property.area_construccion: '')
 
     const navigate =  useNavigate()
 
@@ -50,7 +53,19 @@ export function EditPropertyWindow() {
             propertyAreaState === "" ||
             builtAreaState === "") {
                 changeModalWarningState(!modalWarningState)
-        } else {
+        }
+        else if (propertyNameState.length > 45) {
+            changeModalPropertyNameErrorState(!modalPropertyNameErrorState)
+        }
+        else if (propertyAreaState < 0 || propertyAreaState > 50000) {
+            changeModalPropertyAreaErrorState(!modalPropertyAreaErrorState)
+        }
+        else if (builtAreaState < 0 || builtAreaState > 50000) {
+            changeModalBuiltAreaErrorState(!modalBuiltAreaErrorState)
+        }
+        else if (propertyNameState !== "" &&
+            propertyAreaState !== "" &&
+            builtAreaState !== "") {
             const propertyEdited = {
                 id_numero_predial: property.id_numero_predial,
                 nombre_predio: propertyNameState,
@@ -142,6 +157,24 @@ export function EditPropertyWindow() {
                 title="Error al editar predio"
                 state={modalErrorState}
                 accept={() => changeModalErrorState(!modalErrorState)}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Nombre de predio demasiado largo"
+                state={modalPropertyNameErrorState}
+                accept={() => {changeModalPropertyNameErrorState(!modalPropertyNameErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Área de predio inválida"
+                state={modalPropertyAreaErrorState}
+                accept={() => {changeModalPropertyAreaErrorState(!modalPropertyAreaErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Área construida inválida"
+                state={modalBuiltAreaErrorState}
+                accept={() => {changeModalBuiltAreaErrorState(!modalBuiltAreaErrorState)}}
             />
         </div>
     )

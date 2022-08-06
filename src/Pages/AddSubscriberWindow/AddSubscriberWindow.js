@@ -7,6 +7,7 @@ import { ModalActionPerformed } from "../../components/ModalActionPerformed/Moda
 import { getDocumentTypesValues } from "../../services/DocumentTypeService";
 import "./AddSubscriberWindow.css"
 import { addSubscriber } from "../../services/SubscribersService";
+import { validateEmail, validateNames } from "../../Validations/validateForms";
 
 let documentTypes = [];
 
@@ -18,6 +19,13 @@ export function AddSubscriberWindow() {
     const [modalwarningState, changeModalWarningState] = useState(false);
     const [modalErrorState, changeModalErrorState] = useState(false);
     const [modalExistState, changeModalExistState] = useState(false);
+    const [modalDocumentErrorState, changeModalDocumentErrorState] = useState(false);
+    const [modalFirstNameErrorState, changeModalFirstNameErrorState] = useState(false);
+    const [modalSecondNameErrorState, changeModalSecondNameErrorState] = useState(false);
+    const [modalFirstLastNameErrorState, changeModalFirstLastNameErrorState] = useState(false);
+    const [modalSecondLastNameErrorState, changeModalSecondLastNameErrorState] = useState(false);
+    const [modalEmailErrorState, changeModalEmailErrorState] = useState(false);
+    const [modalPhoneErrorState, changeModalPhoneErrorState] = useState(false);
 
     const [documentTypeState, setDocumentTypeState] = useState(documentTypes.length > 0 ? documentTypes[0].id_tipo_de_documento: '')
     const [documentNumberState, setDocumentNumberState] = useState("")
@@ -40,7 +48,33 @@ export function AddSubscriberWindow() {
             addressState === "" ||
             documentTypeState === "") {
             changeModalWarningState(!modalwarningState)
-        } else {
+        }
+        else if (documentNumberState < 2000000 || documentNumberState > 2000000000) {
+            changeModalDocumentErrorState(!modalDocumentErrorState)
+        }
+        else if (!validateNames(firstNameState) || firstNameState.length > 45) {
+            changeModalFirstNameErrorState(!modalFirstNameErrorState)
+        }
+        else if ((!validateNames(secondNameState) || secondNameState.length > 45) && secondNameState !== '') {
+            changeModalSecondNameErrorState(!modalSecondNameErrorState)
+        }
+        else if (!validateNames(firstLastnameState) || firstLastnameState.length > 45) {
+            changeModalFirstLastNameErrorState(!modalFirstLastNameErrorState)
+        }
+        else if ((!validateNames(secondLastnameState) || secondLastnameState.length > 45) && secondLastnameState !== '') {
+            changeModalSecondLastNameErrorState(!modalSecondLastNameErrorState)
+        }
+        else if ((!validateEmail(mailState) || mailState.length > 100) && mailState !== '') {
+            changeModalEmailErrorState(!modalEmailErrorState)
+        }
+        else if ((phoneState < 3000000000 || phoneState > 4000000000) && phoneState !== '') {
+            changeModalPhoneErrorState(!modalPhoneErrorState)
+        }
+        else if (documentNumberState !== "" &&
+            firstLastnameState !== "" &&
+            firstNameState !== "" &&
+            addressState !== "" &&
+            documentTypeState !== "") {
             const newSubscriber = {
                 id_suscriptor: documentNumberState === "" ? null: documentNumberState,
                 primer_apellido_suscriptor: firstLastnameState === "" ? null: firstLastnameState,
@@ -143,8 +177,6 @@ export function AddSubscriberWindow() {
                     <input
                         className="input-info-subscriber"
                         type="number"
-                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                        required
                         value={phoneState}
                         onChange={(e) => setPhoneState(e.target.value)}
                     />
@@ -174,6 +206,48 @@ export function AddSubscriberWindow() {
                 title="El suscriptor ya existe"
                 state={modalExistState}
                 accept={handleClickAddSubscribersExist}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Número de documento inválido"
+                state={modalDocumentErrorState}
+                accept={() => {changeModalDocumentErrorState(!modalDocumentErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Primer nombre inválido"
+                state={modalFirstNameErrorState}
+                accept={() => {changeModalFirstNameErrorState(!modalFirstNameErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Segundo nombre inválido"
+                state={modalSecondNameErrorState}
+                accept={() => {changeModalSecondNameErrorState(!modalSecondNameErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Primer apellido inválido"
+                state={modalFirstLastNameErrorState}
+                accept={() => {changeModalFirstLastNameErrorState(!modalFirstLastNameErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Segundo apellido inválido"
+                state={modalSecondLastNameErrorState}
+                accept={() => {changeModalSecondLastNameErrorState(!modalSecondLastNameErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Correo electónico inválido"
+                state={modalEmailErrorState}
+                accept={() => {changeModalEmailErrorState(!modalEmailErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Número de télefono inválido"
+                state={modalPhoneErrorState}
+                accept={() => {changeModalPhoneErrorState(!modalPhoneErrorState)}}
             />
         </div>
     )

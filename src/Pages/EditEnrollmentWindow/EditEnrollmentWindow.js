@@ -20,7 +20,6 @@ let watermeterRegisterOptions = [
 export function EditEnrollmentWindow() {
 
     enrollment = getEnrollment()
-    // console.log(enrollment)
     enrollmentStates = getEnrollmentStatesList()
     serviceTypeList = getServiceTypesValues()
 

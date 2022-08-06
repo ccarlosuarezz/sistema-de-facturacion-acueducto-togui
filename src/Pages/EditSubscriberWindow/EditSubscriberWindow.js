@@ -6,6 +6,7 @@ import warningIcon from "../../assets/images/warning.svg"
 import { ModalActionPerformed } from "../../components/ModalActionPerformed/ModalActionPerformed"
 import "./EditSubscriberWindow.css"
 import { editSubscriber, getSubscriber, getSubscriberByID } from "../../services/SubscribersService";
+import { validateEmail } from "../../Validations/validateForms";
 
 let subscriber = {};
 
@@ -20,6 +21,8 @@ export function EditSubscriberWindow() {
     const [modalState, changeModalState] = useState(false);
     const [modalWarningState, changeModalWarningState] = useState(false);
     const [modalErrorState, changeModalErrorState] = useState(false);
+    const [modalEmailErrorState, changeModalEmailErrorState] = useState(false);
+    const [modalPhoneErrorState, changeModalPhoneErrorState] = useState(false);
 
     const navigate =  useNavigate()
 
@@ -27,7 +30,14 @@ export function EditSubscriberWindow() {
         e.preventDefault();
         if (addressState === "") {
             changeModalWarningState(!modalWarningState)
-        } else {
+        }
+        else if (!validateEmail(emailState) || emailState.length > 100) {
+            changeModalEmailErrorState(!modalEmailErrorState)
+        }
+        else if (phoneState < 3000000000 || phoneState > 4000000000) {
+            changeModalPhoneErrorState(!modalPhoneErrorState)
+        }
+        else if (addressState !== "") {
             const subscriberEdited = {
                 id_suscriptor: subscriber.id_suscriptor,
                 direccion_suscriptor: addressState,
@@ -111,6 +121,18 @@ export function EditSubscriberWindow() {
                 title="Error al editar suscriptor"
                 state={modalErrorState}
                 accept={handleClickEditSubscriberError}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Correo electónico inválido"
+                state={modalEmailErrorState}
+                accept={() => {changeModalEmailErrorState(!modalEmailErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Número de télefono inválido"
+                state={modalPhoneErrorState}
+                accept={() => {changeModalPhoneErrorState(!modalPhoneErrorState)}}
             />
         </div>
     )
