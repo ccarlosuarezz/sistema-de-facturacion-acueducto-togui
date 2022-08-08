@@ -1,14 +1,6 @@
 import axios from "axios"
 import { environment } from "../environments/environment"
 
-// let subscriber = {
-//     id_suscriptor: '',
-//     direccion_suscriptor: '',
-//     fecha_nacimiento_suscriptor: '',
-//     telefono_suscriptor: '',
-//     correo_electronico_suscriptor: '',
-//     enrollments: []
-// }
 let subscriber = {}
 
 export const getSubscriberByID = (idSubscriber) => new Promise((resolve, reject) => {
