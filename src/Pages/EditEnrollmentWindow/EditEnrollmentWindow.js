@@ -99,13 +99,14 @@ export function EditEnrollmentWindow() {
                     })
                 }
             } else if (!watermeterState) {
+                console.log(enrollment)
                 const enrollmentEdited = {
                     id_matricula: enrollment.id_matricula,
                     id_numero_predial: asociatedPropertyState,
                     id_suscriptor: asociatedSubscriberState,
                     estado_matricula: enrollmentState,
                     id_tipo_de_servicio: serviceTypeState,
-                    id_medidor: enrollment.medidores.id_medidor
+                    id_medidor: enrollment.id_medidor
                 }
                 editEnrollment(enrollmentEdited)
                 .then(resEditEnrollment => {
