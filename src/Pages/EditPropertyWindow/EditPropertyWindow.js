@@ -22,6 +22,7 @@ export function EditPropertyWindow() {
     const [modalPropertyNameErrorState, changeModalPropertyNameErrorState] = useState(false);
     const [modalPropertyAreaErrorState, changeModalPropertyAreaErrorState] = useState(false);
     const [modalBuiltAreaErrorState, changeModalBuiltAreaErrorState] = useState(false);
+    const [modalAreasErrorState, changeModalAreasErrorState] = useState(false);
 
     const [propertyNameState, setPropertyNameState] = useState(property.nombre_predio ? property.nombre_predio: '')
     const [economicDestinationState, setEconomicDestinationState] = useState(property.destino_economico_predio ? property.destino_economico_predio: '')
@@ -62,6 +63,9 @@ export function EditPropertyWindow() {
         }
         else if (builtAreaState < 0 || builtAreaState > 50000) {
             changeModalBuiltAreaErrorState(!modalBuiltAreaErrorState)
+        }
+        else if (builtAreaState > propertyAreaState) {
+            changeModalAreasErrorState(!modalAreasErrorState)
         }
         else if (propertyNameState !== "" &&
             propertyAreaState !== "" &&
@@ -175,6 +179,12 @@ export function EditPropertyWindow() {
                 title="Área construida inválida"
                 state={modalBuiltAreaErrorState}
                 accept={() => {changeModalBuiltAreaErrorState(!modalBuiltAreaErrorState)}}
+            />
+            <ModalActionPerformed
+                img={warningIcon}
+                title="Área construida mayor a la del predio"
+                state={modalAreasErrorState}
+                accept={() => {changeModalAreasErrorState(!modalAreasErrorState)}}
             />
         </div>
     )

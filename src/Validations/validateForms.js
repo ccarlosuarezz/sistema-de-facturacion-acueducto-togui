@@ -1,5 +1,5 @@
 export const validateNames = (name) => {
-    return /^[a-zA-Z]+$/.test(name);
+    return /^[áéíóúña-zÁÉÍÓÚA-Z]+$/.test(name);
 }
 
 export const validateEmail = (email) => {
