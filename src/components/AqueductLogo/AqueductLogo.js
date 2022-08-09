@@ -8,7 +8,7 @@ const AqueductLogo = () => {
                 <img src={logoApp} width={180}></img>
             </div>
             <div className="Aqueduct-name">
-                <p><b>Asociación de Suscriptores del Acueducto de las Veredas <br></br> Garibay, Manga y Gachanzuca <br></br> del Municipio de Togüí (Boyacá) </b></p>
+                <p><b>Sistema de facturación<br></br>Asociación de Suscriptores del Acueducto de las Veredas<br></br>Garibay, Manga y Gachanzuca<br></br>del Municipio de Togüí (Boyacá)</b></p>
             </div>
         </div>
     )
