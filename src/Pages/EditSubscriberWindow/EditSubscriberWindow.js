@@ -14,9 +14,9 @@ export function EditSubscriberWindow() {
     
     subscriber = getSubscriber()
 
-    const [addressState, setAddressState] = useState(subscriber.direccion_suscriptor)
-    const [emailState, setEmailState] = useState(subscriber.correo_electronico_suscriptor)
-    const [phoneState, setPhoneState] = useState(subscriber.telefono_suscriptor)
+    const [addressState, setAddressState] = useState(subscriber.direccion_suscriptor !== null ? subscriber.direccion_suscriptor : '')
+    const [emailState, setEmailState] = useState(subscriber.correo_electronico_suscriptor !== null ? subscriber.correo_electronico_suscriptor : '')
+    const [phoneState, setPhoneState] = useState(subscriber.telefono_suscriptor !== null ? subscriber.telefono_suscriptor : '')
 
     const [modalState, changeModalState] = useState(false);
     const [modalWarningState, changeModalWarningState] = useState(false);
@@ -31,10 +31,10 @@ export function EditSubscriberWindow() {
         if (addressState === "") {
             changeModalWarningState(!modalWarningState)
         }
-        else if (!validateEmail(emailState) || emailState.length > 100) {
+        else if ((!validateEmail(emailState) || emailState.length > 100) && emailState !== '') {
             changeModalEmailErrorState(!modalEmailErrorState)
         }
-        else if (phoneState < 3000000000 || phoneState > 4000000000) {
+        else if ((phoneState < 3000000000 || phoneState > 4000000000) && phoneState !== '') {
             changeModalPhoneErrorState(!modalPhoneErrorState)
         }
         else if (addressState !== "") {

@@ -26,8 +26,8 @@ export function EditPropertyWindow() {
 
     const [propertyNameState, setPropertyNameState] = useState(property.nombre_predio ? property.nombre_predio: '')
     const [economicDestinationState, setEconomicDestinationState] = useState(property.destino_economico_predio ? property.destino_economico_predio: '')
-    const [propertyAreaState, setPropertyAreaState] = useState(property.area_predio ? property.area_predio: '')
-    const [builtAreaState, setBuiltAreaState] = useState(property.area_construccion ? property.area_construccion: '')
+    const [propertyAreaState, setPropertyAreaState] = useState(property.area_predio ? property.area_predio: '0')
+    const [builtAreaState, setBuiltAreaState] = useState(property.area_construccion ? property.area_construccion: '0')
 
     const navigate =  useNavigate()
 
