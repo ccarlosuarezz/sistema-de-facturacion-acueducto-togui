@@ -137,7 +137,7 @@ export default function ModalInvoicesPDF({state, invoiceList, closeFunction, bac
                             </Document>
                         </PDFViewer>
                         <div className="div-buttons-invoices-pdf">
-                            <button onClick={() => {closeFunction()}} className="finish-invoicing-button">Imprimir planilla</button>
+                            <button onClick={() => {closeFunction()}} className="finish-invoicing-button">Siguiente</button>
                             <button onClick={() => {backFunction()}} className="finish-invoicing-button">Atras</button>
                         </div>
                     </ModalContainer>
