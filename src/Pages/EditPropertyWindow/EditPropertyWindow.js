@@ -58,10 +58,10 @@ export function EditPropertyWindow() {
         else if (propertyNameState.length > 45) {
             changeModalPropertyNameErrorState(!modalPropertyNameErrorState)
         }
-        else if (propertyAreaState < 0 || propertyAreaState > 50000) {
+        else if (propertyAreaState <= 0 || propertyAreaState > 100000) {
             changeModalPropertyAreaErrorState(!modalPropertyAreaErrorState)
         }
-        else if (builtAreaState < 0 || builtAreaState > 50000) {
+        else if (builtAreaState < 0 || builtAreaState > 100000) {
             changeModalBuiltAreaErrorState(!modalBuiltAreaErrorState)
         }
         else if (builtAreaState > propertyAreaState) {
