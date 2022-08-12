@@ -39,8 +39,8 @@ export function AddPropertyWindow() {
     const [departmentState, setDepartmentState] = useState(departmentList.length > 0 ? departmentList[0].nombre_lugar: '')
     const [municipalityState, setMunicipalityState] = useState(municipalityList.length > 0 ? municipalityList[0].nombre_lugar: '')
     const [sidewalkState, setSidewalkState] = useState(sidewalkList.length > 0 ? sidewalkList[0].id_lugar+','+sidewalkList[0].nombre_lugar: '')
-    const [propertyAreaState, setPropertyAreaState] = useState("")
-    const [builtAreaState, setBuiltAreaState] = useState("")
+    const [propertyAreaState, setPropertyAreaState] = useState(0)
+    const [builtAreaState, setBuiltAreaState] = useState(0)
 
     const handleClickAddProperty = (e) => {
         e.preventDefault();
@@ -59,10 +59,10 @@ export function AddPropertyWindow() {
         else if (propertyNameState.length > 45) {
             changeModalPropertyNameErrorState(!modalPropertyNameErrorState)
         }
-        else if (propertyAreaState < 0 || propertyAreaState > 50000) {
+        else if (propertyAreaState <= 0 || propertyAreaState > 100000) {
             changeModalPropertyAreaErrorState(!modalPropertyAreaErrorState)
         }
-        else if (builtAreaState < 0 || builtAreaState > 50000) {
+        else if (builtAreaState < 0 || builtAreaState > 100000) {
             changeModalBuiltAreaErrorState(!modalBuiltAreaErrorState)
         }
         else if (builtAreaState > propertyAreaState) {

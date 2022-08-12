@@ -28,7 +28,7 @@ export function RegisterSanctionsWindow () {
     const [enrollmentState, setEnrollmentState] = useState('-');
     const [chargeTypesState, setChargeTypesState] = useState(chargeTypes[0] ? chargeTypes[0].tipo_cobro: '')
     const [chargeListState, setChargeListState] = useState(chargeList.length > 0 ? chargeList: [])
-    const [chargeState, setChargeState] = useState(chargeListState.length > 0 ? chargeListState[0]: '')
+    const [chargeState, setChargeState] = useState(chargeList[0] ? chargeList[0]: '')
     const [quantityState, setQuantityState] = useState(quantityList[0])
     const [observationsState, setObservationsState] = useState('')
     const [totalState, setTotalState] = useState(chargeState ? quantityState * chargeState.valor_cobro : 0)
@@ -65,6 +65,12 @@ export function RegisterSanctionsWindow () {
             console.log(err)
         })
     }
+    
+    const handleClickCharge = (value) => {
+        setChargeState(value)
+        let jsonValue = JSON.parse(value)
+        setTotalState(quantityState * jsonValue.valor_cobro)
+    }
 
     const handleClickSetQuantity = (value) => {
         setQuantityState(value)
@@ -73,19 +79,15 @@ export function RegisterSanctionsWindow () {
         setTotalState(value * jsonChargeState.valor_cobro)
     }
 
-    const handleClickCharge = (value) => {
-        let jsonValue = JSON.parse(value)
-        setChargeState(jsonValue)
-        setTotalState(quantityState * jsonValue.valor_cobro)
-    }
-
     const handleClickAddPenalty = () => {
         if (enrollmentState !== '-' && chargeTypesState !== '' && chargeState !== '') {
+            let jsonChargeState = chargeState
+            if (typeof chargeState === 'string') jsonChargeState = JSON.parse(chargeState)
             const newPenalty = {
                 id_enrollment: enrollmentState.id_enrollment,
                 subscriber: enrollmentState.subscriber,
-                id_charge: chargeState.id_cobro,
-                type_charge: chargeState.concepto_cobro,
+                id_charge: jsonChargeState.id_cobro,
+                type_charge: jsonChargeState.concepto_cobro,
                 quantity: quantityState,
                 total_value: totalState,
                 observations: observationsState
@@ -185,9 +187,9 @@ export function RegisterSanctionsWindow () {
                             <select
                                 className="select-payments payment"
                                 value={chargeState}
-                                onChange={(e) => handleClickCharge(e.target.value)}
+                                onChange={(e) => {handleClickCharge(e.target.value)}}
                             >
-                                {chargeList.map(charge => {
+                                {chargeListState.map(charge => {
                                     return(
                                         <option key={charge.id_cobro}
                                             value={JSON.stringify(charge)}>

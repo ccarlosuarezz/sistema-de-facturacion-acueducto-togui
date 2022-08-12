@@ -142,7 +142,7 @@ export default function ModalPlanillaPDF({state, invoiceList, closeFunction, bac
                         </PDFViewer>
                         <div className="div-buttons-planilla-pdf">
                             <button onClick={() => {closeFunction()}} className="finish-invoicing-button">Terminar</button>
-                            <button onClick={() => {backFunction()}} className="finish-invoicing-button">Atras</button>
+                            <button onClick={() => {backFunction()}} className="finish-invoicing-button">Atrás</button>
                         </div>
                     </ModalContainer>
                 </Overlay>
